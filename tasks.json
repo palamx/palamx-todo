@@ -1,0 +1,57 @@
+[
+  {
+    "id": "task-ubl",
+    "title": "🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball)",
+    "desc": "รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน",
+    "cat": "footage",
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      { "id": "sub-u1", "title": "ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน", "completed": false },
+      { "id": "sub-u2", "title": "ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL", "completed": false },
+      { "id": "sub-u3", "title": "ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค", "completed": false },
+      { "id": "sub-u4", "title": "รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story", "completed": false }
+    ]
+  },
+  {
+    "id": "task-thaicard",
+    "title": "🎴 คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)",
+    "desc": "รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย",
+    "cat": "content",
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      { "id": "sub-t1", "title": "ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง", "completed": false },
+      { "id": "sub-t2", "title": "ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด", "completed": false },
+      { "id": "sub-t3", "title": "ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret", "completed": false },
+      { "id": "sub-t4", "title": "สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย", "completed": false }
+    ]
+  },
+  {
+    "id": "task-ezdonate",
+    "title": "ลดเสียง EasyDonate (Alert Sound)",
+    "desc": "ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์",
+    "cat": "stream",
+    "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "task-obs",
+    "title": "ปรับ OBS Overlay (Floating Sticker UI)",
+    "desc": "จอเกมเต็ม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง",
+    "cat": "stream",
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "task-shorts",
+    "title": "อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์",
+    "desc": "รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels",
+    "cat": "urgent",
+    "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  }
+]

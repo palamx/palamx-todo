@@ -360,6 +360,7 @@
     .tag-stream { background: #D0F4DE; color: #1B4931; }
     .tag-urgent { background: #FF5A5F; color: #FFF; }
     .tag-general { background: #E2E2E2; color: #3E2723; }
+    .tag-done { background: #2EC4B6; color: #FFF; }
 
     .subtask-badge {
       background: #E8F0FE;
@@ -683,7 +684,10 @@
           </div>
           <div class="brand-subtitle">สาวการ์ดเกมที่ติดเกมนิดหน่อย • เคลียร์งานนอกสถานที่</div>
         </div>
-        <div>
+        <div style="display: flex; gap: 6px;">
+          <button class="btn-icon" onclick="fetchLatestTasks(true)" title="ดึงข้อมูลล่าสุดจากระบบ">
+            🔄 ซิงค์
+          </button>
           <button class="btn-icon" onclick="openExportModal()" title="คัดลอกหรือแชร์">
             📋 แชร์ / MD
           </button>
@@ -776,7 +780,7 @@
   <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
 
   <script>
-    const STORAGE_KEY = 'palamx_tasks_v2'; // upgrade key for nested structure
+    const STORAGE_KEY = 'palamx_tasks_v3'; // upgraded storage key for synced state
 
     // Default Initial Data with Nested Subtasks (Parent + Sub-checklists)
     const DEFAULT_TASKS = [
@@ -813,7 +817,7 @@
         title: 'ลดเสียง EasyDonate (Alert Sound)',
         desc: 'ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์',
         cat: 'stream',
-        completed: false,
+        completed: true,
         isOpen: false,
         subtasks: []
       },
@@ -831,7 +835,7 @@
         title: 'อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์',
         desc: 'รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels',
         cat: 'urgent',
-        completed: false,
+        completed: true,
         isOpen: false,
         subtasks: []
       }
@@ -843,13 +847,33 @@
       content: { label: '🎬 คอนเทนต์', badge: 'คอนเทนต์', class: 'tag-content' },
       stream: { label: '🎙️ สตรีม/OBS', badge: 'สตรีม', class: 'tag-stream' },
       urgent: { label: '🎯 งานด่วน', badge: 'งานด่วน', class: 'tag-urgent' },
+      done: { label: '✅ เสร็จแล้ว (Done)', badge: 'เสร็จแล้ว', class: 'tag-done' },
       general: { label: '📦 ทั่วไป', badge: 'ทั่วไป', class: 'tag-general' }
     };
 
     let tasks = [];
     let currentFilter = 'all';
 
-    function loadTasks() {
+    async function fetchLatestTasks(manual = false) {
+      try {
+        const res = await fetch('./tasks.json?t=' + Date.now(), { cache: 'no-store' });
+        if (res.ok) {
+          const remoteTasks = await res.json();
+          if (Array.isArray(remoteTasks) && remoteTasks.length > 0) {
+            tasks = remoteTasks;
+            saveTasks();
+            render();
+            if (manual) showToast('ซิงค์ข้อมูลล่าสุดจากระบบแล้ว! 🔄');
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Cannot fetch tasks.json', err);
+      }
+      if (manual) showToast('ใช้ข้อมูลในเครื่อง (ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์)');
+    }
+
+    async function loadTasks() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
@@ -862,6 +886,9 @@
         tasks = [...DEFAULT_TASKS];
       }
       render();
+
+      // Background sync from tasks.json
+      await fetchLatestTasks(false);
     }
 
     function saveTasks() {
@@ -1078,9 +1105,14 @@
 
       Object.keys(CATEGORIES).forEach(key => {
         const catInfo = CATEGORIES[key];
-        const count = key === 'all' 
-          ? tasks.length 
-          : tasks.filter(t => t.cat === key).length;
+        let count = 0;
+        if (key === 'all') {
+          count = tasks.length;
+        } else if (key === 'done') {
+          count = tasks.filter(t => t.completed || (t.subtasks && t.subtasks.some(s => s.completed))).length;
+        } else {
+          count = tasks.filter(t => t.cat === key).length;
+        }
 
         const pill = document.createElement('div');
         pill.className = `cat-pill ${currentFilter === key ? 'active' : ''}`;
@@ -1093,9 +1125,14 @@
       });
 
       // 2. Filter & Sort
-      const filtered = currentFilter === 'all'
-        ? tasks
-        : tasks.filter(t => t.cat === currentFilter);
+      let filtered = [];
+      if (currentFilter === 'all') {
+        filtered = tasks;
+      } else if (currentFilter === 'done') {
+        filtered = tasks.filter(t => t.completed || (t.subtasks && t.subtasks.some(s => s.completed)));
+      } else {
+        filtered = tasks.filter(t => t.cat === currentFilter);
+      }
 
       const sorted = [...filtered].sort((a, b) => Number(a.completed) - Number(b.completed));
 
