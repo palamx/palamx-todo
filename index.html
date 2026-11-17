@@ -7,13 +7,16 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Palamx Todo">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="theme-color" content="#FFE066">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
-  <title>Palampampamx • Task & Footage Checklist</title>
+  <title>Palampampamx • Core Task & Content Checklist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-cream: #FAF0D7;
@@ -29,6 +32,7 @@
       --accent-blue: #0081CF;
       --shadow-comic: 3px 3px 0px var(--border-dark);
       --shadow-comic-lg: 5px 5px 0px var(--border-dark);
+      --shadow-comic-sm: 1.5px 1.5px 0px var(--border-dark);
       --radius: 14px;
       --safe-bottom: env(safe-area-inset-bottom, 16px);
     }
@@ -122,79 +126,74 @@
       box-shadow: 1px 1px 0 var(--border-dark);
     }
 
-    /* Progress Bar */
+    /* Progress Bar Box (Focused on Core Tasks) */
     .progress-box {
       background: white;
       border: 2px solid var(--border-dark);
-      border-radius: 9px;
-      padding: 7px 10px;
+      border-radius: 10px;
+      padding: 8px 12px;
       display: flex;
       flex-direction: column;
       gap: 5px;
       box-shadow: 2px 2px 0 var(--border-dark);
     }
 
-    .progress-labels {
+    .progress-header-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
-      font-weight: 600;
+      align-items: center;
+    }
+
+    .progress-badge-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .core-pill-mini {
+      background: #FFE066;
+      border: 1.5px solid var(--border-dark);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 12px;
+    }
+
+    .progress-percent-val {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent-coral);
     }
 
     .progress-bar-bg {
-      height: 11px;
+      height: 12px;
       background: #EFE6D0;
       border: 1.5px solid var(--border-dark);
       border-radius: 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .progress-bar-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent-coral), var(--accent-orange));
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       border-radius: 20px;
     }
 
-    /* Quick Preset Banner (Footage Project) */
-    .preset-banner {
-      background: #FFF8E7;
-      border: 2px dashed var(--border-dark);
-      border-radius: var(--radius);
-      padding: 10px 12px;
-      margin-bottom: 12px;
+    .progress-subtext {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 8px;
-    }
-
-    .preset-text {
-      font-size: 0.82rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
       font-weight: 500;
-      line-height: 1.35;
     }
 
-    .btn-preset {
-      background: var(--accent-orange);
-      color: white;
-      border: 2px solid var(--border-dark);
-      box-shadow: 2px 2px 0 var(--border-dark);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .btn-preset:active {
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 var(--border-dark);
-    }
-
-    /* Fixed Category Pills (Wrapped Grid, No Horizontal Scroll Nightmare) */
+    /* Category Filter Pills */
     .category-grid {
       display: flex;
       flex-wrap: wrap;
@@ -228,6 +227,16 @@
       box-shadow: 1.5px 2px 0 rgba(0,0,0,0.3);
     }
 
+    .cat-pill.core-highlight {
+      border-color: #FF5A5F;
+      background: #FFF4E5;
+    }
+    .cat-pill.core-highlight.active {
+      background: #3E2723;
+      border-color: #3E2723;
+      color: white;
+    }
+
     .cat-count {
       background: rgba(0,0,0,0.08);
       padding: 1px 6px;
@@ -238,6 +247,48 @@
     .cat-pill.active .cat-count {
       background: rgba(255,255,255,0.25);
       color: white;
+    }
+
+    /* Core Tasks Action Banner (Picker & Strategy) */
+    .core-helper-banner {
+      background: #FFF8E7;
+      border: 2px dashed var(--border-dark);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .core-helper-info {
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+    .core-helper-info strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.85rem;
+    }
+
+    .btn-pick-content {
+      background: var(--accent-coral);
+      color: white;
+      border: 2px solid var(--border-dark);
+      box-shadow: 2px 2px 0 var(--border-dark);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform 0.1s;
+    }
+    .btn-pick-content:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--border-dark);
     }
 
     /* Section Control & Bulk Clear */
@@ -298,6 +349,10 @@
       box-shadow: 1px 1px 0px #A89F91;
     }
 
+    .task-card.is-core-task {
+      border-left: 6px solid #FF8C42;
+    }
+
     .task-main-row {
       padding: 12px;
       display: flex;
@@ -306,7 +361,7 @@
       cursor: pointer;
     }
 
-    /* Custom Comic Checkbox (Large Touch Target for Mobile) */
+    /* Comic Checkbox */
     .custom-check {
       width: 26px;
       height: 26px;
@@ -342,7 +397,7 @@
     .task-header-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
     }
 
@@ -355,12 +410,50 @@
       text-transform: uppercase;
     }
 
-    .tag-footage { background: #FFD166; color: #3E2723; }
+    .tag-core { background: #FFE066; color: #3E2723; }
     .tag-content { background: #FF99C8; color: #3E2723; }
     .tag-stream { background: #D0F4DE; color: #1B4931; }
-    .tag-urgent { background: #FF5A5F; color: #FFF; }
-    .tag-general { background: #E2E2E2; color: #3E2723; }
+    .tag-ideas { background: #E8DAEF; color: #5B2C6F; }
+    .tag-etc { background: #E2E2E2; color: #3E2723; }
     .tag-done { background: #2EC4B6; color: #FFF; }
+
+    /* This Week Core Status Badges */
+    .badge-this-week {
+      background: #FF5A5F;
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      box-shadow: 1px 1px 0 var(--border-dark);
+    }
+    .badge-this-week:hover {
+      background: #e04348;
+    }
+
+    .btn-add-to-week {
+      background: #FFF;
+      color: #6D4C41;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 12px;
+      border: 1.5px dashed #8D6E63;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .btn-add-to-week:hover {
+      background: #FFE066;
+      border-color: var(--border-dark);
+      color: var(--text-main);
+    }
 
     .subtask-badge {
       background: #E8F0FE;
@@ -421,7 +514,7 @@
       color: var(--accent-coral);
     }
 
-    /* Subtask Section (Nested Checklist) */
+    /* Subtask Section */
     .subtasks-wrapper {
       background: #FDFBF5;
       border-top: 2px dashed #D6C7A7;
@@ -478,7 +571,6 @@
       color: var(--accent-coral);
     }
 
-    /* Add Subtask Row */
     .add-subtask-row {
       display: flex;
       gap: 6px;
@@ -522,7 +614,7 @@
       margin-bottom: 6px;
     }
 
-    /* Floating Quick Add Bar at Bottom (Sticky) */
+    /* Floating Quick Add Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -557,7 +649,7 @@
     }
 
     .select-category {
-      width: 105px;
+      width: 115px;
       height: 44px;
       border: 2.5px solid var(--border-dark);
       border-radius: 10px;
@@ -591,7 +683,7 @@
       box-shadow: 1px 1px 0 var(--border-dark);
     }
 
-    /* Modal for Export / Markdown */
+    /* Modal Styling */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -613,12 +705,12 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow-comic-lg);
       width: 100%;
-      max-width: 500px;
+      max-width: 520px;
       padding: 18px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .modal-title {
@@ -648,7 +740,47 @@
       flex-wrap: wrap;
     }
 
-    /* Toast Notification */
+    /* Picker Modal Items List */
+    .picker-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      max-height: 52vh;
+      padding-right: 4px;
+    }
+
+    .picker-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border: 2px solid var(--border-dark);
+      border-radius: 9px;
+      background: #FFFDF9;
+      box-shadow: 1.5px 1.5px 0 var(--border-dark);
+      cursor: pointer;
+    }
+    .picker-item.selected {
+      background: #FFF4E5;
+      border-color: #FF5A5F;
+    }
+
+    .picker-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .picker-item-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .picker-item-cat {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Toast */
     .toast {
       position: fixed;
       bottom: calc(70px + var(--safe-bottom));
@@ -682,7 +814,7 @@
             <span>✨ Palampampamx</span>
             <span class="brand-tag">TO-DO</span>
           </div>
-          <div class="brand-subtitle">สาวการ์ดเกมที่ติดเกมนิดหน่อย • เคลียร์งานนอกสถานที่</div>
+          <div class="brand-subtitle">สาวการ์ดเกมที่ติดเกมนิดหน่อย • เคลียร์งานสัปดาห์นี้</div>
         </div>
         <div style="display: flex; gap: 6px;">
           <button class="btn-icon" onclick="fetchLatestTasks(true)" title="ดึงข้อมูลล่าสุดจากระบบ">
@@ -694,28 +826,35 @@
         </div>
       </div>
 
-      <!-- Overall Progress -->
+      <!-- Core Tasks Focused Progress Bar -->
       <div class="progress-box">
-        <div class="progress-labels">
-          <span id="progress-summary">ความคืบหน้ารวม</span>
-          <span id="progress-percent">0%</span>
+        <div class="progress-header-row">
+          <div class="progress-badge-title">
+            <span class="core-pill-mini">สัปดาห์นี้</span>
+            <span>ความคืบหน้า Core Task</span>
+          </div>
+          <span class="progress-percent-val" id="progress-percent">0%</span>
         </div>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
+        <div class="progress-subtext">
+          <span id="progress-summary">เสร็จแล้ว 0 จาก 0 งานหลัก</span>
+          <span id="progress-total-info">คลังงานทั้งหมด 0 รายการ</span>
+        </div>
       </div>
     </header>
 
-    <!-- Quick Preset Banner (Footage Project with Sub-shots) -->
-    <div class="preset-banner">
-      <div class="preset-text">
-        <strong>📹 เพิ่มโปรเจกต์ถ่ายงาน (มีช็อตย่อย)?</strong>
-        <div style="font-size: 0.75rem; color: #6D4C41;">สร้างหัวข้อหลักพร้อมช็อตย่อย (Hook, Closeup, Reaction, หน้างาน)</div>
+    <!-- Quick Action / Core Helper Banner -->
+    <div class="core-helper-banner">
+      <div class="core-helper-info">
+        <strong>🎯 สัปดาห์นี้เน้น Core Task ให้เสร็จก่อน</strong>
+        <span style="font-size: 0.74rem; color: #6D4C41;">หลอดเปอร์เซ็นต์คิดจาก Core Task เท่านั้น • ค่อยๆ หยิบ Content มาทำทีละชิ้น</span>
       </div>
-      <button class="btn-preset" onclick="promptAddFootageProject()">+ โปรเจกต์ถ่ายคลิป</button>
+      <button class="btn-pick-content" onclick="openPickModal()">+ หยิบงานเข้า Core Task</button>
     </div>
 
-    <!-- Category Filter Pills (Wrapped Grid, No Horizontal Scroll Nightmare) -->
+    <!-- Category Filter Pills (Updated to Core Task / Content / Stream / Ideas / Etc) -->
     <div class="category-grid" id="cat-tabs">
       <!-- Injected by JS -->
     </div>
@@ -723,7 +862,7 @@
     <!-- Task Toolbar -->
     <div class="list-toolbar">
       <div class="toolbar-title" id="active-cat-title">
-        📋 งานทั้งหมด
+        🎯 Core Task (สัปดาห์นี้)
       </div>
       <button class="btn-clear-done" onclick="clearCompleted()">
         🧹 เคลียร์ที่เสร็จแล้ว
@@ -736,26 +875,47 @@
     </div>
   </div>
 
-  <!-- Bottom Floating Add Form -->
+  <!-- Bottom Floating Quick Add Bar -->
   <div class="bottom-bar">
     <form class="add-form" onsubmit="handleAddTask(event)">
       <input 
         type="text" 
         id="new-task-input" 
         class="input-task" 
-        placeholder="พิมพ์หัวข้องานใหม่..." 
+        placeholder="พิมพ์ชื่องานใหม่..." 
         autocomplete="off"
         required
       />
       <select id="new-task-cat" class="select-category">
-        <option value="footage">📹 Footage</option>
-        <option value="content">🎬 คอนเทนต์</option>
-        <option value="stream">🎙️ สตรีม/OBS</option>
-        <option value="urgent">🎯 งานด่วน</option>
-        <option value="general">📦 ทั่วไป</option>
+        <option value="core">🎯 Core Task</option>
+        <option value="content">🎬 Content</option>
+        <option value="stream">🎙️ Stream</option>
+        <option value="ideas">💡 Ideas</option>
+        <option value="etc">📦 Etc</option>
       </select>
       <button type="submit" class="btn-add" title="เพิ่มงาน">+</button>
     </form>
+  </div>
+
+  <!-- Pick Content/Ideas into Core Task Modal -->
+  <div class="modal-overlay" id="pick-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <div class="modal-title">
+        <span>🎯 หยิบงานเข้า Core Task สัปดาห์นี้</span>
+        <button class="btn-icon" onclick="closePickModal()">✕</button>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+        เลือกไอเดียคลิป คอนเทนต์ หรือระบบสตรีมจากคลัง เพื่อดึงเข้ามาโฟกัสในอาทิตย์นี้ หลอดเปอร์เซ็นต์จะนับเฉพาะงานที่เลือกไว้ครับ
+      </p>
+      
+      <div class="picker-list" id="picker-items-container">
+        <!-- Injected by JS -->
+      </div>
+
+      <div class="modal-btn-row">
+        <button class="btn-icon" style="background: var(--accent-coral); color: white;" onclick="closePickModal()">✓ เรียบร้อย</button>
+      </div>
+    </div>
   </div>
 
   <!-- Export / Markdown Modal -->
@@ -766,7 +926,7 @@
         <button class="btn-icon" onclick="closeExportModal()">✕</button>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
-        ข้อมูลถูกบันทึกในมือถือเครื่องนี้ เมื่อติ๊กงานเสร็จแล้ว ให้กดปุ่ม <strong>"คัดลอกข้อความ"</strong> ด้านล่าง แล้วส่งเข้า LINE เพื่อนำมาอัปเดตกลับเข้าคอมได้ทันทีครับ
+        ข้อมูลถูกบันทึกในอุปกรณ์นี้ เมื่อติ๊กงานเสร็จแล้ว ให้กดปุ่ม <strong>"คัดลอกข้อความ"</strong> เพื่อส่งสรุปเข้า LINE หรือนำไปอัปเดตต่อได้ทันทีครับ
       </p>
       <textarea id="export-markdown" class="modal-textarea" readonly></textarea>
       <div class="modal-btn-row">
@@ -780,79 +940,377 @@
   <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
 
   <script>
-    const STORAGE_KEY = 'palamx_tasks_v3'; // upgraded storage key for synced state
+    const STORAGE_KEY = 'palamx_tasks_v5'; // V4 with Core / Content / Stream / Ideas / Etc
 
-    // Default Initial Data with Nested Subtasks (Parent + Sub-checklists)
+    // Default 10 Core Tasks for this week + Content pool + Stream + Ideas + Etc
     const DEFAULT_TASKS = [
+  {
+    "id": "core-1",
+    "title": "🎯 เคาะจุดยืนตัวตนให้ชัด: สาวการ์ดเกมที่ติดเกมนิดหน่อย",
+    "desc": "ชู Pokémon / MTG เป็นแกนหลัก + เกม Variety เสริมภาพลักษณ์สาวป่วนขี้สงสัย ชวนแชทป้ายยา",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-2",
+    "title": "📄 อัปเดต Rate Card V1 รับงานสปอนเซอร์",
+    "desc": "แยกเรต Shorts vs Long-form, เงื่อนไข Gen Code 30 วัน, เพิ่มแพ็กเกจ Bundle",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-3",
+    "title": "💼 เช็ก & อัปเดต Portfolio (bit.ly/palamx-portfolio)",
+    "desc": "เปลี่ยนหน้าแรกให้ตรงแกนสาวการ์ดเกม + อัปเดตยอดผู้ติดตามล่าสุด + คัดตัวอย่างงานเด่น",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-4",
+    "title": "📸 จัดหน้าไอจีใหม่ (@palampampamx) — Highlight Story & ปักหมุด",
+    "desc": "จัดทำภาพปกไฮไลท์ 4 หมวดสไตล์เหลืองดื้อ (Work, TCG & Games, My Life, Live) + ปักหมุด 3 โพสต์แรก",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
       {
-        id: 'task-ubl',
-        title: '🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball)',
-        desc: 'รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน',
-        cat: 'footage',
-        completed: false,
-        isOpen: true,
-        subtasks: [
-          { id: 'sub-u1', title: 'ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน', completed: false },
-          { id: 'sub-u2', title: 'ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL', completed: false },
-          { id: 'sub-u3', title: 'ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค', completed: false },
-          { id: 'sub-u4', title: 'รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story', completed: false }
-        ]
+        "id": "sub-ig-1",
+        "title": "ออกแบบ / ใส่ภาพปก Highlight Story 4 หมวดโทนเหลืองดื้อ",
+        "completed": false
       },
       {
-        id: 'task-thaicard',
-        title: '🎴 คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)',
-        desc: 'รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย',
-        cat: 'content',
-        completed: false,
-        isOpen: true,
-        subtasks: [
-          { id: 'sub-t1', title: 'ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง', completed: false },
-          { id: 'sub-t2', title: 'ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด', completed: false },
-          { id: 'sub-t3', title: 'ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret', completed: false },
-          { id: 'sub-t4', title: 'สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย', completed: false }
-        ]
+        "id": "sub-ig-2",
+        "title": "ไฮไลท์ 1: Work (ผลงานรับงานสปอนเซอร์ / รีวิว)",
+        "completed": false
       },
       {
-        id: 'task-ezdonate',
-        title: 'ลดเสียง EasyDonate (Alert Sound)',
-        desc: 'ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์',
-        cat: 'stream',
-        completed: true,
-        isOpen: false,
-        subtasks: []
+        "id": "sub-ig-3",
+        "title": "ไฮไลท์ 2: TCG & Games (งานแข่งการ์ด / แกะซอง / เกม)",
+        "completed": false
       },
       {
-        id: 'task-obs',
-        title: 'ปรับ OBS Overlay (Floating Sticker UI)',
-        desc: 'จอเกมเต็ม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง',
-        cat: 'stream',
-        completed: false,
-        isOpen: false,
-        subtasks: []
+        "id": "sub-ig-4",
+        "title": "ไฮไลท์ 3: My Life (ไลฟ์สไตล์นอกจอ / ความป่วน)",
+        "completed": false
       },
       {
-        id: 'task-shorts',
-        title: 'อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์',
-        desc: 'รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels',
-        cat: 'urgent',
-        completed: true,
-        isOpen: false,
-        subtasks: []
+        "id": "sub-ig-5",
+        "title": "ไฮไลท์ 4: Live & Discord (ตารางสตรีม / คอมมูนิตี้)",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-6",
+        "title": "ปักหมุด 3 โพสต์แนะนำตัว & รีแบรนด์รับการกลับมา",
+        "completed": false
       }
-    ];
+    ]
+  },
+  {
+    "id": "core-5",
+    "title": "📘 โพสต์ปักหมุด Facebook Page รับการกลับมา",
+    "desc": "โพสต์แจ้งความเคลื่อนไหวกลับมาแอคทีฟ + ปักหมุดพิกัดช่องทางหลัก YouTube",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-6",
+    "title": "🎵 ปักหมุด 3 คลิปเด่น TikTok + ตรวจสอบลิงก์",
+    "desc": "เลือกคลิปยอดวิวสูง / ตรงคาแรกเตอร์สาวการ์ดเกมปักหมุดบนสุด + ตรวจสอบปุ่มเชื่อมโยง IG/YouTube",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-7",
+    "title": "🔴 รีแบรนด์หน้า YouTube (@palampampamx)",
+    "desc": "อัปเดต Channel Description + แบนเนอร์โทนเหลืองดื้อ + จัด Playlist หน้าแรกให้ตรงแกน",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-8",
+    "title": "⚡ ลงคลิปสั้นอุ่นเครื่อง 3–5 คลิปแรก (สูตร 1-to-4)",
+    "desc": "ลงพร้อมกัน 4 แพลตฟอร์ม (Shorts, TikTok, Reels, FB Reels) แสดงความแอคทีฟให้ลูกค้าเห็น",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-9",
+    "title": "🎙️ เช็กความพร้อม OBS Overlay (Floating Sticker UI)",
+    "desc": "จอเกม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง + ทดสอบภาพและระดับเสียง",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "task-ubl",
+    "title": "🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball League)",
+    "desc": "รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน (ดึงจาก Content Pool เข้ามาโฟกัสสัปดาห์นี้)",
+    "cat": "content",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      {
+        "id": "sub-u1",
+        "title": "ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน",
+        "completed": false
+      },
+      {
+        "id": "sub-u2",
+        "title": "ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL",
+        "completed": false
+      },
+      {
+        "id": "sub-u3",
+        "title": "ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค",
+        "completed": false
+      },
+      {
+        "id": "sub-u4",
+        "title": "รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "task-thaicard",
+    "title": "🎴 คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)",
+    "desc": "รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย ชูจุดยืนสาวการ์ดเกมสนับสนุนการ์ดไทย",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": [
+      {
+        "id": "sub-t1",
+        "title": "ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง",
+        "completed": false
+      },
+      {
+        "id": "sub-t2",
+        "title": "ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด",
+        "completed": false
+      },
+      {
+        "id": "sub-t3",
+        "title": "ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret",
+        "completed": false
+      },
+      {
+        "id": "sub-t4",
+        "title": "สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "content-pkmn101",
+    "title": "🎬 Pokémon 101: เริ่มต้นเล่นการ์ดโปเกมอนยังไงให้เข้าใจง่าย",
+    "desc": "ปูพื้นฐานการ์ดโปเกมอน กฎกติกาเบื้องต้น และศัพท์การ์ดที่เจอบ่อย สไตล์เพื่อนสอนเพื่อน ไม่เน้นตึง",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-sleeves",
+    "title": "🛡️ เลือกใช้สลีฟอะไรดี? (ซองใส่การ์ดฉบับมือใหม่)",
+    "desc": "เปรียบเทียบสลีฟ Outer / Inner / Matte / Standard สำหรับเล่นแข่ง vs เก็บสะสม ป้องกันการ์ดงอ/เป็นรอย",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-art-healing",
+    "title": "🎨 เก็บอาร์ตตามศิลปิน: ประหยัดและฮีลใจ",
+    "desc": "แนวทางการสะสมการ์ดโปเกมอนตามลายเส้นนักวาดที่ชอบ ไม่ต้องเปิดกล่องเป็นหมื่นก็มีความสุขได้",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-vlog",
+    "title": "📹 Vlog สั้น: ไปยิมการ์ดโปเกมอนจริง",
+    "desc": "ถ่ายโมเมนต์แซวตัวเองตอนแพ้ หรือบรรยากาศน่ารักๆ ในร้านการ์ด",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-meme-deck",
+    "title": "📱 คลิปสั้นเด็ค 'มีม' แปลกๆ ใน Pokémon TCG Pocket",
+    "desc": "คลิปสั้นแนวฮา เน้นความป่วนและความบันเทิง ล้อเลียนความตึงของคู่แข่ง",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-art-toys",
+    "title": "📦 วางแผนกิจกรรมสตรีมแกะกล่องสุ่ม Art Toys / ซองการ์ด",
+    "desc": "เตรียมกล่องสุ่มหรือซองการ์ดที่จะนำมาแกะโชว์คุยกับคนดูในไลฟ์วันศุกร์",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-repurpose",
+    "title": "✂️ ระบบตัดคลิปยาว 15-20 นาที (Repurposing Pipeline)",
+    "desc": "คัดไฮไลท์ช่วงกิจกรรมสตรีมวันศุกร์ ตัดเดดแอร์ ปล่อยลง YouTube วันพุธถัดไป",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-ezdonate",
+    "title": "🔊 ลดเสียง EasyDonate (Alert Sound) ใน OBS",
+    "desc": "ปรับระดับเสียง Browser Source ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-bot-cmd",
+    "title": "🤖 ตั้งค่า Nightbot / Chat Commands ในช่อง",
+    "desc": "ตั้งค่าคำสั่ง !yt, !tiktok, !social, !discord ให้บอทตอบพิกัดอัตโนมัติในแชท",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-mentor",
+    "title": "🎮 ซ้อมจังหวะ Playful Mentor ในไลฟ์สด",
+    "desc": "คุยเล่นเป็นกันเอง สลับกับการตอบข้อสงสัยเจาะลึกเรื่องการ์ดและเกมอย่างมั่นใจ",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-twitch-redirect",
+    "title": "🟣 เปิดไลฟ์สั้น 15-30 นาทีบน Twitch เพื่อชี้ทางแฟนๆ",
+    "desc": "ทักทายแฟนเดิมที่ Twitch และเชิญชวนย้ายมาติดตามสตรีมหลักที่ YouTube",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-linkbio",
+    "title": "🌐 ทำเว็บ Link-in-Bio ของตัวเอง (portfolio_site)",
+    "desc": "ใช้หน้าเว็บส่วนตัวสไตล์เหลืองการ์ดเกมแทน Linktree เพื่อรวมทุกช่องทางและผลงาน",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-mediakit",
+    "title": "📊 ทำ Media Kit V1 แบบ PDF พร้อมสถิติรายไตรมาส",
+    "desc": "เตรียมเอกสารแนะนำช่องแบบมืออาชีพสำหรับส่งให้แบรนด์และเอเจนซี่",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-cosplay",
+    "title": "🎭 สตรีมแต่งตัวล้อเลียนตัวละครอนิเมะในโอกาสพิเศษ",
+    "desc": "ไอเดียชุดคอสเพลย์/พรอปกวนๆ ดึงมู้ดอนิเมะญี่ปุ่นมาสร้างสีสันในไลฟ์",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-soundboard",
+    "title": "🎵 รวมคลังซาวด์มีมอนิเมะฮาๆ สำหรับ Shorts/TikTok",
+    "desc": "รวบรวมเสียงตบมุก เสียงตกใจแบบอนิเมะไว้ใช้ตอนตัดต่อคลิปสั้น",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "etc-gear",
+    "title": "🔌 ตรวจเช็กอุปกรณ์ สตรีมมิ่ง ไมค์ ไฟ กล้อง Top-down",
+    "desc": "ทดสอบมุมกล้องถ่ายเปิดกล่องการ์ดและเช็กความเสถียรของสายต่อต่างๆ",
+    "cat": "etc",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "etc-backup",
+    "title": "💾 สำรองไฟล์ Footage งานแข่งลง External Drive",
+    "desc": "จัดระเบียบโฟลเดอร์ไฟล์วิดีโอ แยกตามช็อตและวันที่เพื่อความสะดวกในการตัดต่อ",
+    "cat": "etc",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  }
+];
 
     const CATEGORIES = {
       all: { label: '🌟 ทั้งหมด', badge: 'ทั้งหมด' },
-      footage: { label: '📹 ถ่ายงาน & Footage', badge: 'Footage', class: 'tag-footage' },
+      core: { label: '🎯 Core Task', badge: 'Core Task', class: 'tag-core' },
       content: { label: '🎬 คอนเทนต์', badge: 'คอนเทนต์', class: 'tag-content' },
       stream: { label: '🎙️ สตรีม/OBS', badge: 'สตรีม', class: 'tag-stream' },
-      urgent: { label: '🎯 งานด่วน', badge: 'งานด่วน', class: 'tag-urgent' },
-      done: { label: '✅ เสร็จแล้ว (Done)', badge: 'เสร็จแล้ว', class: 'tag-done' },
-      general: { label: '📦 ทั่วไป', badge: 'ทั่วไป', class: 'tag-general' }
+      ideas: { label: '💡 ไอเดีย (รอทำ)', badge: 'ไอเดีย', class: 'tag-ideas' },
+      etc: { label: '📦 อื่นๆ (Etc)', badge: 'ทั่วไป', class: 'tag-etc' },
+      done: { label: '✅ เสร็จแล้ว (Done)', badge: 'เสร็จแล้ว', class: 'tag-done' }
     };
 
     let tasks = [];
-    let currentFilter = 'all';
+    let currentFilter = 'core'; // Default focus on Core Task!
 
     async function fetchLatestTasks(manual = false) {
       try {
@@ -879,11 +1337,11 @@
         if (stored) {
           tasks = JSON.parse(stored);
         } else {
-          tasks = [...DEFAULT_TASKS];
+          tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS));
           saveTasks();
         }
       } catch (e) {
-        tasks = [...DEFAULT_TASKS];
+        tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS));
       }
       render();
 
@@ -903,7 +1361,7 @@
       const toast = document.getElementById('toast');
       toast.textContent = msg;
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
+      setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
     function triggerHaptic() {
@@ -912,7 +1370,7 @@
       }
     }
 
-    // Toggle Main Task
+    // Toggle Main Task Completion
     function toggleMainTask(id, event) {
       if (event) event.stopPropagation();
       const t = tasks.find(item => item.id === id);
@@ -931,7 +1389,7 @@
       render();
     }
 
-    // Toggle Subtask
+    // Toggle Subtask Completion
     function toggleSubtask(taskId, subId, event) {
       if (event) event.stopPropagation();
       const parent = tasks.find(item => item.id === taskId);
@@ -948,6 +1406,25 @@
 
       triggerHaptic();
       saveTasks();
+      render();
+    }
+
+    // Toggle This Week (Core Focus) status
+    function toggleThisWeek(id, event) {
+      if (event) event.stopPropagation();
+      const t = tasks.find(item => item.id === id);
+      if (!t) return;
+
+      if (t.cat === 'core') {
+        // If originally created as core task, moving out switches to 'etc' or toggles
+        t.isThisWeek = !t.isThisWeek;
+      } else {
+        t.isThisWeek = !t.isThisWeek;
+      }
+
+      triggerHaptic();
+      saveTasks();
+      showToast(t.isThisWeek ? 'เพิ่มเข้า Core Task สัปดาห์นี้แล้ว! 🎯' : 'นำออกจากงานสัปดาห์นี้แล้ว 📦');
       render();
     }
 
@@ -1005,7 +1482,7 @@
     // Delete Main Task
     function deleteTask(id, event) {
       if (event) event.stopPropagation();
-      if (confirm('ต้องการลบหัวข้อนี้พร้อมรายการย่อยทั้งหมดหรือไม่?')) {
+      if (confirm('ต้องการลบรายการนี้พร้อมรายการย่อยหรือไม่?')) {
         tasks = tasks.filter(item => item.id !== id);
         saveTasks();
         showToast('ลบรายการเรียบร้อย');
@@ -1022,11 +1499,13 @@
 
       if (!text) return;
 
+      const chosenCat = catSelect.value;
       const newTask = {
         id: 'task-' + Date.now(),
         title: text,
         desc: '',
-        cat: catSelect.value,
+        cat: chosenCat,
+        isThisWeek: (chosenCat === 'core'),
         completed: false,
         isOpen: true,
         subtasks: []
@@ -1035,35 +1514,7 @@
       tasks.unshift(newTask);
       saveTasks();
       input.value = '';
-      showToast('เพิ่มหัวข้อใหม่แล้ว! ✨');
-      render();
-    }
-
-    // Prompt Add Footage Project Preset
-    function promptAddFootageProject() {
-      const name = prompt('กรุณาใส่ชื่อคลิป/งานที่ต้องการถ่าย (เช่น UBL Ep.2 หรือ คลิปการ์ดไทย):', 'คลิปเล่าเรื่องงานแข่ง');
-      if (!name) return;
-
-      const newProject = {
-        id: 'task-' + Date.now(),
-        title: `📹 ${name}`,
-        desc: 'รวมเช็กลิสต์ช็อตถ่ายงาน & Footage',
-        cat: 'footage',
-        completed: false,
-        isOpen: true,
-        subtasks: [
-          { id: 'sub-' + Date.now() + '-1', title: '🎬 ช็อต Hook เปิดคลิปหน้ากล้อง (3-5 วิ)', completed: false },
-          { id: 'sub-' + Date.now() + '-2', title: '🎴 ช็อตโคลสอัพการ์ด / รายละเอียดสินค้าชัดๆ', completed: false },
-          { id: 'sub-' + Date.now() + '-3', title: '👥 ช็อตคนกำลังเล่น / บรรยากาศหน้างาน', completed: false },
-          { id: 'sub-' + Date.now() + '-4', title: '😱 ช็อต Reaction / รีแอ็กชั่นหน้าเหวอ', completed: false },
-          { id: 'sub-' + Date.now() + '-5', title: '🤳 รูปถ่ายแนวตั้งถือการ์ดลง IG Post & Story', completed: false }
-        ]
-      };
-
-      tasks.unshift(newProject);
-      saveTasks();
-      currentFilter = 'footage';
-      showToast('สร้างโปรเจกต์ถ่ายคลิปพร้อม 5 ช็อตย่อยแล้ว! 🎬');
+      showToast(newTask.isThisWeek ? 'เพิ่มเข้า Core Task สัปดาห์นี้แล้ว! 🎯' : 'เพิ่มหัวข้อใหม่เรียบร้อย ✨');
       render();
     }
 
@@ -1098,8 +1549,68 @@
       render();
     }
 
+    /* Pick Content/Ideas into Core Task Modal */
+    function openPickModal() {
+      const modal = document.getElementById('pick-modal');
+      const container = document.getElementById('picker-items-container');
+      container.innerHTML = '';
+
+      // Non-core tasks or all candidates
+      const pool = tasks.filter(t => !t.completed);
+
+      if (pool.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-muted);">ไม่มีรายการงานในระบบ</div>`;
+      } else {
+        pool.forEach(t => {
+          const isSelected = !!t.isThisWeek || t.cat === 'core';
+          const catName = CATEGORIES[t.cat]?.label || t.cat;
+
+          const itemEl = document.createElement('div');
+          itemEl.className = `picker-item ${isSelected ? 'selected' : ''}`;
+          itemEl.onclick = () => {
+            t.isThisWeek = !t.isThisWeek;
+            saveTasks();
+            triggerHaptic();
+            openPickModal(); // re-render modal
+            render(); // re-render background
+          };
+
+          itemEl.innerHTML = `
+            <div class="custom-check" style="${isSelected ? 'background: var(--accent-green);' : ''}">
+              ${isSelected ? '✓' : ''}
+            </div>
+            <div class="picker-item-info">
+              <div class="picker-item-title">${escapeHtml(t.title)}</div>
+              <div class="picker-item-cat">${catName} ${t.isThisWeek ? '• ⭐ ใน Core Task สัปดาห์นี้' : '• 💡 ไอเดียรอหยิบ'}</div>
+            </div>
+          `;
+          container.appendChild(itemEl);
+        });
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closePickModal() {
+      document.getElementById('pick-modal').classList.remove('active');
+    }
+
     function render() {
-      // 1. Render Category Pills (Fixed Wrap, No Scroll Needed!)
+      // 1. Calculate Core Task Progress (Strictly Core Tasks: isThisWeek || cat === 'core')
+      const coreTasks = tasks.filter(t => t.isThisWeek || t.cat === 'core');
+      const totalCore = coreTasks.length;
+      const completedCore = coreTasks.filter(t => t.completed).length;
+      const corePct = totalCore === 0 ? 0 : Math.round((completedCore / totalCore) * 100);
+
+      document.getElementById('progress-summary').textContent = `เสร็จแล้ว ${completedCore} จาก ${totalCore} งานหลัก`;
+      document.getElementById('progress-percent').textContent = `${corePct}%`;
+      document.getElementById('progress-fill').style.width = `${corePct}%`;
+
+      const totalItems = tasks.length;
+      const ideasCount = tasks.filter(t => t.cat === 'ideas' && !t.isThisWeek).length;
+      document.getElementById('progress-total-info').textContent = `คลังงาน ${totalItems} รายการ (ไอเดียรอทำ ${ideasCount})`;
+
+      // 2. Render Category Filter Tabs
       const catContainer = document.getElementById('cat-tabs');
       catContainer.innerHTML = '';
 
@@ -1108,14 +1619,17 @@
         let count = 0;
         if (key === 'all') {
           count = tasks.length;
+        } else if (key === 'core') {
+          // Count active core tasks
+          count = coreTasks.length;
         } else if (key === 'done') {
-          count = tasks.filter(t => t.completed || (t.subtasks && t.subtasks.some(s => s.completed))).length;
+          count = tasks.filter(t => t.completed).length;
         } else {
           count = tasks.filter(t => t.cat === key).length;
         }
 
         const pill = document.createElement('div');
-        pill.className = `cat-pill ${currentFilter === key ? 'active' : ''}`;
+        pill.className = `cat-pill ${currentFilter === key ? 'active' : ''} ${key === 'core' ? 'core-highlight' : ''}`;
         pill.onclick = () => filterCategory(key);
         pill.innerHTML = `
           <span>${catInfo.label}</span>
@@ -1124,31 +1638,38 @@
         catContainer.appendChild(pill);
       });
 
-      // 2. Filter & Sort
+      // 3. Filter Tasks Based on Selection
       let filtered = [];
       if (currentFilter === 'all') {
         filtered = tasks;
+      } else if (currentFilter === 'core') {
+        filtered = coreTasks;
       } else if (currentFilter === 'done') {
-        filtered = tasks.filter(t => t.completed || (t.subtasks && t.subtasks.some(s => s.completed)));
+        filtered = tasks.filter(t => t.completed);
       } else {
         filtered = tasks.filter(t => t.cat === currentFilter);
       }
 
+      // Sort: incomplete first, then completed
       const sorted = [...filtered].sort((a, b) => Number(a.completed) - Number(b.completed));
 
-      // 3. Render Task Cards
+      // 4. Render Task Cards
       const listContainer = document.getElementById('task-list');
       listContainer.innerHTML = '';
 
-      document.getElementById('active-cat-title').textContent = 
-        currentFilter === 'all' ? '📋 งานทั้งหมด' : `${CATEGORIES[currentFilter]?.label || currentFilter}`;
+      const catLabel = CATEGORIES[currentFilter]?.label || currentFilter;
+      document.getElementById('active-cat-title').textContent = `${catLabel} (${sorted.length})`;
 
       if (sorted.length === 0) {
         listContainer.innerHTML = `
           <div class="empty-state">
-            <div class="empty-icon">🎉</div>
-            <div style="font-weight: 600; font-size: 1rem; margin-bottom: 4px;">ไม่มีงานค้างในหมวดนี้!</div>
-            <div style="font-size: 0.8rem;">กดปุ่มด้านล่างเพื่อเพิ่มงาน หรือเปลี่ยนหมวดดูนะ</div>
+            <div class="empty-icon">${currentFilter === 'core' ? '🎯' : '🎉'}</div>
+            <div style="font-weight: 600; font-size: 1rem; margin-bottom: 4px;">
+              ${currentFilter === 'core' ? 'ยังไม่มีงานใน Core Task สัปดาห์นี้!' : 'ไม่มีงานค้างในหมวดนี้!'}
+            </div>
+            <div style="font-size: 0.8rem;">
+              ${currentFilter === 'core' ? 'กดปุ่ม "+ หยิบงานเข้า Core Task" ด้านบนเพื่อเลือกงานมาทำได้เลยครับ' : 'กดปุ่มด้านล่างเพื่อเพิ่มงาน หรือสลับหมวดดูนะ'}
+            </div>
           </div>
         `;
       } else {
@@ -1157,10 +1678,11 @@
           const subTotal = hasSubtasks ? t.subtasks.length : 0;
           const subDone = hasSubtasks ? t.subtasks.filter(s => s.completed).length : 0;
 
-          const catData = CATEGORIES[t.cat] || { badge: t.cat, class: 'tag-general' };
+          const catData = CATEGORIES[t.cat] || { badge: t.cat, class: 'tag-etc' };
+          const isThisWeek = !!t.isThisWeek || t.cat === 'core';
 
           const card = document.createElement('div');
-          card.className = `task-card ${t.completed ? 'completed' : ''}`;
+          card.className = `task-card ${t.completed ? 'completed' : ''} ${isThisWeek ? 'is-core-task' : ''}`;
 
           // Main Task Row
           let mainRowHtml = `
@@ -1171,6 +1693,17 @@
               <div class="task-content">
                 <div class="task-header-row">
                   <span class="tag-badge ${catData.class}">${catData.badge}</span>
+                  
+                  ${isThisWeek ? `
+                    <span class="badge-this-week" onclick="toggleThisWeek('${t.id}', event)" title="คลิกเพื่อนำออกจากงานสัปดาห์นี้">
+                      ⭐ สัปดาห์นี้ ✕
+                    </span>
+                  ` : `
+                    <button class="btn-add-to-week" onclick="toggleThisWeek('${t.id}', event)" title="ดึงเข้างานหลักสัปดาห์นี้">
+                      + ดึงเข้าสัปดาห์นี้
+                    </button>
+                  `}
+
                   ${hasSubtasks ? `<span class="subtask-badge">ช็อตย่อย: ${subDone}/${subTotal}</span>` : ''}
                 </div>
                 <div class="task-title">${escapeHtml(t.title)}</div>
@@ -1224,27 +1757,6 @@
           listContainer.appendChild(card);
         });
       }
-
-      // 4. Calculate Overall Progress (Includes Subtasks)
-      let totalItems = 0;
-      let completedItems = 0;
-
-      tasks.forEach(t => {
-        if (t.subtasks && t.subtasks.length > 0) {
-          t.subtasks.forEach(s => {
-            totalItems++;
-            if (s.completed) completedItems++;
-          });
-        } else {
-          totalItems++;
-          if (t.completed) completedItems++;
-        }
-      });
-
-      const pct = totalItems === 0 ? 0 : Math.round((completedItems / totalItems) * 100);
-      document.getElementById('progress-summary').textContent = `เสร็จแล้ว ${completedItems} จาก ${totalItems} จุด`;
-      document.getElementById('progress-percent').textContent = `${pct}%`;
-      document.getElementById('progress-fill').style.width = `${pct}%`;
     }
 
     function escapeHtml(str) {
@@ -1259,26 +1771,65 @@
 
       let md = `# 📝 Palampampamx Checklist (อัปเดต: ${new Date().toLocaleDateString('th-TH')})\n\n`;
       
-      const cats = ['urgent', 'content', 'footage', 'stream', 'general'];
-      cats.forEach(c => {
-        const catTasks = tasks.filter(t => t.cat === c);
-        if (catTasks.length > 0) {
-          md += `### ${CATEGORIES[c]?.label || c}\n`;
-          catTasks.forEach(t => {
-            const hasSub = t.subtasks && t.subtasks.length > 0;
-            const subDone = hasSub ? t.subtasks.filter(s => s.completed).length : 0;
-            const subTotal = hasSub ? t.subtasks.length : 0;
+      // 1. Core Tasks First!
+      const coreTasks = tasks.filter(t => t.isThisWeek || t.cat === 'core');
+      if (coreTasks.length > 0) {
+        md += `## 🎯 Core Tasks (ต้องทำสัปดาห์นี้ — ${coreTasks.filter(t => t.completed).length}/${coreTasks.length})\n`;
+        coreTasks.forEach(t => {
+          const hasSub = t.subtasks && t.subtasks.length > 0;
+          const subDone = hasSub ? t.subtasks.filter(s => s.completed).length : 0;
+          const subTotal = hasSub ? t.subtasks.length : 0;
+          md += `- [${t.completed ? 'x' : ' '}] **${t.title}**${hasSub ? ` (${subDone}/${subTotal})` : ''}\n`;
+          if (t.desc) md += `  > ${t.desc}\n`;
+          if (hasSub) {
+            t.subtasks.forEach(s => {
+              md += `  - [${s.completed ? 'x' : ' '}] ${s.title}\n`;
+            });
+          }
+        });
+        md += `\n`;
+      }
 
-            md += `- [${t.completed ? 'x' : ' '}] **${t.title}**${hasSub ? ` (${subDone}/${subTotal})` : ''}\n`;
-            if (hasSub) {
-              t.subtasks.forEach(s => {
-                md += `  - [${s.completed ? 'x' : ' '}] ${s.title}\n`;
-              });
-            }
-          });
-          md += `\n`;
-        }
-      });
+      // 2. Content Pool
+      const contentTasks = tasks.filter(t => t.cat === 'content' && !t.isThisWeek);
+      if (contentTasks.length > 0) {
+        md += `## 🎬 Content Pool (คลังคอนเทนต์/คลิปที่วางแผนไว้)\n`;
+        contentTasks.forEach(t => {
+          md += `- [${t.completed ? 'x' : ' '}] ${t.title}\n`;
+          if (t.desc) md += `  > ${t.desc}\n`;
+        });
+        md += `\n`;
+      }
+
+      // 3. Stream & OBS
+      const streamTasks = tasks.filter(t => t.cat === 'stream' && !t.isThisWeek);
+      if (streamTasks.length > 0) {
+        md += `## 🎙️ Stream & OBS (ระบบไลฟ์)\n`;
+        streamTasks.forEach(t => {
+          md += `- [${t.completed ? 'x' : ' '}] ${t.title}\n`;
+        });
+        md += `\n`;
+      }
+
+      // 4. Ideas & Backlog
+      const ideasTasks = tasks.filter(t => t.cat === 'ideas' && !t.isThisWeek);
+      if (ideasTasks.length > 0) {
+        md += `## 💡 Ideas & Backlog (ไอเดียเก็บไว้ทำได้)\n`;
+        ideasTasks.forEach(t => {
+          md += `- [${t.completed ? 'x' : ' '}] ${t.title}\n`;
+        });
+        md += `\n`;
+      }
+
+      // 5. Etc
+      const etcTasks = tasks.filter(t => t.cat === 'etc' && !t.isThisWeek);
+      if (etcTasks.length > 0) {
+        md += `## 📦 Etc (งานทั่วไป/อื่นๆ)\n`;
+        etcTasks.forEach(t => {
+          md += `- [${t.completed ? 'x' : ' '}] ${t.title}\n`;
+        });
+        md += `\n`;
+      }
 
       textarea.value = md.trim();
       modal.classList.add('active');
@@ -1290,6 +1841,7 @@
 
     function closeModalOnBackdrop(e) {
       if (e.target.id === 'export-modal') closeExportModal();
+      if (e.target.id === 'pick-modal') closePickModal();
     }
 
     function copyMarkdownText() {
@@ -1304,8 +1856,8 @@
     }
 
     function resetToDefault() {
-      if (confirm('ต้องการรีเซ็ตงานทั้งหมดกลับเป็นตัวอย่างเริ่มต้นหรือไม่?')) {
-        tasks = [...DEFAULT_TASKS];
+      if (confirm('ต้องการรีเซ็ตงานทั้งหมดกลับเป็นตัวอย่างเริ่มต้น (Core Task 10 งาน) หรือไม่?')) {
+        tasks = JSON.parse(JSON.stringify(DEFAULT_TASKS));
         saveTasks();
         closeExportModal();
         showToast('รีเซ็ตเป็นตัวอย่างเริ่มต้นแล้ว');

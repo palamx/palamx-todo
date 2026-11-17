@@ -1,56 +1,354 @@
 [
   {
-    "id": "task-ubl",
-    "title": "🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball)",
-    "desc": "รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน",
-    "cat": "footage",
+    "id": "core-1",
+    "title": "🎯 เคาะจุดยืนตัวตนให้ชัด: สาวการ์ดเกมที่ติดเกมนิดหน่อย",
+    "desc": "ชู Pokémon / MTG เป็นแกนหลัก + เกม Variety เสริมภาพลักษณ์สาวป่วนขี้สงสัย ชวนแชทป้ายยา",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-2",
+    "title": "📄 อัปเดต Rate Card V1 รับงานสปอนเซอร์",
+    "desc": "แยกเรต Shorts vs Long-form, เงื่อนไข Gen Code 30 วัน, เพิ่มแพ็กเกจ Bundle",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-3",
+    "title": "💼 เช็ก & อัปเดต Portfolio (bit.ly/palamx-portfolio)",
+    "desc": "เปลี่ยนหน้าแรกให้ตรงแกนสาวการ์ดเกม + อัปเดตยอดผู้ติดตามล่าสุด + คัดตัวอย่างงานเด่น",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-4",
+    "title": "📸 จัดหน้าไอจีใหม่ (@palampampamx) — Highlight Story & ปักหมุด",
+    "desc": "จัดทำภาพปกไฮไลท์ 4 หมวดสไตล์เหลืองดื้อ (Work, TCG & Games, My Life, Live) + ปักหมุด 3 โพสต์แรก",
+    "cat": "core",
+    "isThisWeek": true,
     "completed": false,
     "isOpen": true,
     "subtasks": [
-      { "id": "sub-u1", "title": "ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน", "completed": false },
-      { "id": "sub-u2", "title": "ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL", "completed": false },
-      { "id": "sub-u3", "title": "ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค", "completed": false },
-      { "id": "sub-u4", "title": "รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story", "completed": false }
+      {
+        "id": "sub-ig-1",
+        "title": "ออกแบบ / ใส่ภาพปก Highlight Story 4 หมวดโทนเหลืองดื้อ",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-2",
+        "title": "ไฮไลท์ 1: Work (ผลงานรับงานสปอนเซอร์ / รีวิว)",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-3",
+        "title": "ไฮไลท์ 2: TCG & Games (งานแข่งการ์ด / แกะซอง / เกม)",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-4",
+        "title": "ไฮไลท์ 3: My Life (ไลฟ์สไตล์นอกจอ / ความป่วน)",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-5",
+        "title": "ไฮไลท์ 4: Live & Discord (ตารางสตรีม / คอมมูนิตี้)",
+        "completed": false
+      },
+      {
+        "id": "sub-ig-6",
+        "title": "ปักหมุด 3 โพสต์แนะนำตัว & รีแบรนด์รับการกลับมา",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "core-5",
+    "title": "📘 โพสต์ปักหมุด Facebook Page รับการกลับมา",
+    "desc": "โพสต์แจ้งความเคลื่อนไหวกลับมาแอคทีฟ + ปักหมุดพิกัดช่องทางหลัก YouTube",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-6",
+    "title": "🎵 ปักหมุด 3 คลิปเด่น TikTok + ตรวจสอบลิงก์",
+    "desc": "เลือกคลิปยอดวิวสูง / ตรงคาแรกเตอร์สาวการ์ดเกมปักหมุดบนสุด + ตรวจสอบปุ่มเชื่อมโยง IG/YouTube",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-7",
+    "title": "🔴 รีแบรนด์หน้า YouTube (@palampampamx)",
+    "desc": "อัปเดต Channel Description + แบนเนอร์โทนเหลืองดื้อ + จัด Playlist หน้าแรกให้ตรงแกน",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-8",
+    "title": "⚡ ลงคลิปสั้นอุ่นเครื่อง 3–5 คลิปแรก (สูตร 1-to-4)",
+    "desc": "ลงพร้อมกัน 4 แพลตฟอร์ม (Shorts, TikTok, Reels, FB Reels) แสดงความแอคทีฟให้ลูกค้าเห็น",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "core-9",
+    "title": "🎙️ เช็กความพร้อม OBS Overlay (Floating Sticker UI)",
+    "desc": "จอเกม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง + ทดสอบภาพและระดับเสียง",
+    "cat": "core",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "task-ubl",
+    "title": "🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball League)",
+    "desc": "รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน (ดึงจาก Content Pool เข้ามาโฟกัสสัปดาห์นี้)",
+    "cat": "content",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      {
+        "id": "sub-u1",
+        "title": "ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน",
+        "completed": false
+      },
+      {
+        "id": "sub-u2",
+        "title": "ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL",
+        "completed": false
+      },
+      {
+        "id": "sub-u3",
+        "title": "ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค",
+        "completed": false
+      },
+      {
+        "id": "sub-u4",
+        "title": "รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story",
+        "completed": false
+      }
     ]
   },
   {
     "id": "task-thaicard",
     "title": "🎴 คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)",
-    "desc": "รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย",
+    "desc": "รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย ชูจุดยืนสาวการ์ดเกมสนับสนุนการ์ดไทย",
     "cat": "content",
+    "isThisWeek": false,
     "completed": false,
-    "isOpen": true,
+    "isOpen": false,
     "subtasks": [
-      { "id": "sub-t1", "title": "ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง", "completed": false },
-      { "id": "sub-t2", "title": "ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด", "completed": false },
-      { "id": "sub-t3", "title": "ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret", "completed": false },
-      { "id": "sub-t4", "title": "สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย", "completed": false }
+      {
+        "id": "sub-t1",
+        "title": "ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง",
+        "completed": false
+      },
+      {
+        "id": "sub-t2",
+        "title": "ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด",
+        "completed": false
+      },
+      {
+        "id": "sub-t3",
+        "title": "ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret",
+        "completed": false
+      },
+      {
+        "id": "sub-t4",
+        "title": "สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย",
+        "completed": false
+      }
     ]
   },
   {
-    "id": "task-ezdonate",
-    "title": "ลดเสียง EasyDonate (Alert Sound)",
-    "desc": "ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์",
-    "cat": "stream",
-    "completed": true,
-    "isOpen": false,
-    "subtasks": []
-  },
-  {
-    "id": "task-obs",
-    "title": "ปรับ OBS Overlay (Floating Sticker UI)",
-    "desc": "จอเกมเต็ม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง",
-    "cat": "stream",
+    "id": "content-pkmn101",
+    "title": "🎬 Pokémon 101: เริ่มต้นเล่นการ์ดโปเกมอนยังไงให้เข้าใจง่าย",
+    "desc": "ปูพื้นฐานการ์ดโปเกมอน กฎกติกาเบื้องต้น และศัพท์การ์ดที่เจอบ่อย สไตล์เพื่อนสอนเพื่อน ไม่เน้นตึง",
+    "cat": "content",
+    "isThisWeek": false,
     "completed": false,
     "isOpen": false,
     "subtasks": []
   },
   {
-    "id": "task-shorts",
-    "title": "อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์",
-    "desc": "รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels",
-    "cat": "urgent",
+    "id": "content-sleeves",
+    "title": "🛡️ เลือกใช้สลีฟอะไรดี? (ซองใส่การ์ดฉบับมือใหม่)",
+    "desc": "เปรียบเทียบสลีฟ Outer / Inner / Matte / Standard สำหรับเล่นแข่ง vs เก็บสะสม ป้องกันการ์ดงอ/เป็นรอย",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-art-healing",
+    "title": "🎨 เก็บอาร์ตตามศิลปิน: ประหยัดและฮีลใจ",
+    "desc": "แนวทางการสะสมการ์ดโปเกมอนตามลายเส้นนักวาดที่ชอบ ไม่ต้องเปิดกล่องเป็นหมื่นก็มีความสุขได้",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-vlog",
+    "title": "📹 Vlog สั้น: ไปยิมการ์ดโปเกมอนจริง",
+    "desc": "ถ่ายโมเมนต์แซวตัวเองตอนแพ้ หรือบรรยากาศน่ารักๆ ในร้านการ์ด",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-meme-deck",
+    "title": "📱 คลิปสั้นเด็ค 'มีม' แปลกๆ ใน Pokémon TCG Pocket",
+    "desc": "คลิปสั้นแนวฮา เน้นความป่วนและความบันเทิง ล้อเลียนความตึงของคู่แข่ง",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-art-toys",
+    "title": "📦 วางแผนกิจกรรมสตรีมแกะกล่องสุ่ม Art Toys / ซองการ์ด",
+    "desc": "เตรียมกล่องสุ่มหรือซองการ์ดที่จะนำมาแกะโชว์คุยกับคนดูในไลฟ์วันศุกร์",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "content-repurpose",
+    "title": "✂️ ระบบตัดคลิปยาว 15-20 นาที (Repurposing Pipeline)",
+    "desc": "คัดไฮไลท์ช่วงกิจกรรมสตรีมวันศุกร์ ตัดเดดแอร์ ปล่อยลง YouTube วันพุธถัดไป",
+    "cat": "content",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-ezdonate",
+    "title": "🔊 ลดเสียง EasyDonate (Alert Sound) ใน OBS",
+    "desc": "ปรับระดับเสียง Browser Source ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์",
+    "cat": "stream",
+    "isThisWeek": false,
     "completed": true,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-bot-cmd",
+    "title": "🤖 ตั้งค่า Nightbot / Chat Commands ในช่อง",
+    "desc": "ตั้งค่าคำสั่ง !yt, !tiktok, !social, !discord ให้บอทตอบพิกัดอัตโนมัติในแชท",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-mentor",
+    "title": "🎮 ซ้อมจังหวะ Playful Mentor ในไลฟ์สด",
+    "desc": "คุยเล่นเป็นกันเอง สลับกับการตอบข้อสงสัยเจาะลึกเรื่องการ์ดและเกมอย่างมั่นใจ",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "stream-twitch-redirect",
+    "title": "🟣 เปิดไลฟ์สั้น 15-30 นาทีบน Twitch เพื่อชี้ทางแฟนๆ",
+    "desc": "ทักทายแฟนเดิมที่ Twitch และเชิญชวนย้ายมาติดตามสตรีมหลักที่ YouTube",
+    "cat": "stream",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-linkbio",
+    "title": "🌐 ทำเว็บ Link-in-Bio ของตัวเอง (portfolio_site)",
+    "desc": "ใช้หน้าเว็บส่วนตัวสไตล์เหลืองการ์ดเกมแทน Linktree เพื่อรวมทุกช่องทางและผลงาน",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-mediakit",
+    "title": "📊 ทำ Media Kit V1 แบบ PDF พร้อมสถิติรายไตรมาส",
+    "desc": "เตรียมเอกสารแนะนำช่องแบบมืออาชีพสำหรับส่งให้แบรนด์และเอเจนซี่",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-cosplay",
+    "title": "🎭 สตรีมแต่งตัวล้อเลียนตัวละครอนิเมะในโอกาสพิเศษ",
+    "desc": "ไอเดียชุดคอสเพลย์/พรอปกวนๆ ดึงมู้ดอนิเมะญี่ปุ่นมาสร้างสีสันในไลฟ์",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "ideas-soundboard",
+    "title": "🎵 รวมคลังซาวด์มีมอนิเมะฮาๆ สำหรับ Shorts/TikTok",
+    "desc": "รวบรวมเสียงตบมุก เสียงตกใจแบบอนิเมะไว้ใช้ตอนตัดต่อคลิปสั้น",
+    "cat": "ideas",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "etc-gear",
+    "title": "🔌 ตรวจเช็กอุปกรณ์ สตรีมมิ่ง ไมค์ ไฟ กล้อง Top-down",
+    "desc": "ทดสอบมุมกล้องถ่ายเปิดกล่องการ์ดและเช็กความเสถียรของสายต่อต่างๆ",
+    "cat": "etc",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": []
+  },
+  {
+    "id": "etc-backup",
+    "title": "💾 สำรองไฟล์ Footage งานแข่งลง External Drive",
+    "desc": "จัดระเบียบโฟลเดอร์ไฟล์วิดีโอ แยกตามช็อตและวันที่เพื่อความสะดวกในการตัดต่อ",
+    "cat": "etc",
+    "isThisWeek": false,
+    "completed": false,
     "isOpen": false,
     "subtasks": []
   }
