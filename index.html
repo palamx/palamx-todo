@@ -8,7 +8,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Palamx Todo">
   <meta name="theme-color" content="#FFE066">
-  <!-- Inline App Icon for Home Screen & Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
   <title>Palampampamx • Task & Footage Checklist</title>
@@ -46,7 +45,7 @@
       background-color: var(--bg-cream);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: calc(90px + var(--safe-bottom));
+      padding-bottom: calc(105px + var(--safe-bottom));
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -57,7 +56,7 @@
     .container {
       width: 100%;
       max-width: 680px;
-      padding: 16px;
+      padding: 14px;
     }
 
     /* Top Sticky Header */
@@ -66,93 +65,86 @@
       border: 3px solid var(--border-dark);
       border-radius: var(--radius);
       box-shadow: var(--shadow-comic-lg);
-      padding: 16px;
-      margin-bottom: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
       position: relative;
-      overflow: hidden;
     }
 
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .brand-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .brand-tag {
       background: var(--accent-coral);
       color: white;
-      font-size: 0.72rem;
-      padding: 2px 8px;
+      font-size: 0.7rem;
+      padding: 2px 7px;
       border-radius: 20px;
-      border: 2px solid var(--border-dark);
-      box-shadow: 2px 2px 0 var(--border-dark);
+      border: 1.5px solid var(--border-dark);
+      box-shadow: 1.5px 1.5px 0 var(--border-dark);
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
 
     .brand-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       font-weight: 400;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 6px;
+      margin-top: 2px;
     }
 
     .btn-icon {
       background: white;
       border: 2px solid var(--border-dark);
-      border-radius: 10px;
+      border-radius: 9px;
       box-shadow: 2px 2px 0 var(--border-dark);
       padding: 6px 10px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
-      transition: transform 0.1s, box-shadow 0.1s;
+      transition: transform 0.1s;
     }
-
     .btn-icon:active {
-      transform: translate(2px, 2px);
-      box-shadow: 0 0 0 var(--border-dark);
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--border-dark);
     }
 
     /* Progress Bar */
     .progress-box {
       background: white;
       border: 2px solid var(--border-dark);
-      border-radius: 10px;
-      padding: 8px 12px;
+      border-radius: 9px;
+      padding: 7px 10px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
       box-shadow: 2px 2px 0 var(--border-dark);
     }
 
     .progress-labels {
       display: flex;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
     }
 
     .progress-bar-bg {
-      height: 12px;
+      height: 11px;
       background: #EFE6D0;
-      border: 2px solid var(--border-dark);
+      border: 1.5px solid var(--border-dark);
       border-radius: 20px;
       overflow: hidden;
     }
@@ -165,22 +157,23 @@
       border-radius: 20px;
     }
 
-    /* Quick Preset Banner (Specially for Mobile / Outdoor Shooting) */
+    /* Quick Preset Banner (Footage Project) */
     .preset-banner {
       background: #FFF8E7;
       border: 2px dashed var(--border-dark);
       border-radius: var(--radius);
-      padding: 10px 14px;
-      margin-bottom: 14px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
 
     .preset-text {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
+      line-height: 1.35;
     }
 
     .btn-preset {
@@ -189,59 +182,58 @@
       border: 2px solid var(--border-dark);
       box-shadow: 2px 2px 0 var(--border-dark);
       border-radius: 8px;
-      padding: 5px 10px;
+      padding: 6px 10px;
       font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .btn-preset:active {
       transform: translate(1px, 1px);
       box-shadow: 1px 1px 0 var(--border-dark);
     }
 
-    /* Category Filter Tabs (Horizontal Scroll) */
-    .category-scroll {
+    /* Fixed Category Pills (Wrapped Grid, No Horizontal Scroll Nightmare) */
+    .category-grid {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 12px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .category-scroll::-webkit-scrollbar {
-      display: none;
     }
 
     .cat-pill {
       background: white;
       border: 2px solid var(--border-dark);
-      border-radius: 30px;
+      border-radius: 20px;
       box-shadow: 2px 2px 0 var(--border-dark);
-      padding: 6px 14px;
-      font-size: 0.82rem;
+      padding: 6px 11px;
+      font-size: 0.8rem;
       font-weight: 600;
-      white-space: nowrap;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
+      gap: 5px;
+      transition: all 0.12s ease;
+      user-select: none;
+    }
+
+    .cat-pill:active {
+      transform: translateY(1px);
     }
 
     .cat-pill.active {
       background: var(--border-dark);
       color: white;
-      transform: translateY(-2px);
-      box-shadow: 2px 4px 0 rgba(0,0,0,0.3);
+      box-shadow: 1.5px 2px 0 rgba(0,0,0,0.3);
     }
 
     .cat-count {
       background: rgba(0,0,0,0.08);
       padding: 1px 6px;
       border-radius: 12px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
+      font-weight: 700;
     }
     .cat-pill.active .cat-count {
       background: rgba(255,255,255,0.25);
@@ -253,12 +245,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       padding: 0 4px;
     }
 
     .toolbar-title {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -275,7 +267,7 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 4px 8px;
+      padding: 4px 6px;
       border-radius: 6px;
     }
     .btn-clear-done:hover {
@@ -290,38 +282,31 @@
       margin-bottom: 20px;
     }
 
-    .task-item {
+    /* Main Task Card */
+    .task-card {
       background: var(--bg-card);
       border: 2.5px solid var(--border-dark);
       border-radius: var(--radius);
       box-shadow: var(--shadow-comic);
-      padding: 12px 14px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      overflow: hidden;
       transition: all 0.15s ease;
-      position: relative;
     }
 
-    .task-item:active {
-      transform: translateY(1px);
-    }
-
-    .task-item.completed {
+    .task-card.completed {
       background: #F4EEDC;
       border-color: #A89F91;
       box-shadow: 1px 1px 0px #A89F91;
-      opacity: 0.75;
+    }
+
+    .task-main-row {
+      padding: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
     }
 
     /* Custom Comic Checkbox (Large Touch Target for Mobile) */
-    .checkbox-wrap {
-      cursor: pointer;
-      position: relative;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
     .custom-check {
       width: 26px;
       height: 26px;
@@ -333,12 +318,15 @@
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 16px;
+      font-size: 15px;
       color: white;
-      transition: all 0.15s;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.12s;
     }
 
-    .task-item.completed .custom-check {
+    .task-card.completed .task-main-row .custom-check,
+    .subtask-item.completed .custom-check {
       background: var(--accent-green);
       border-color: var(--border-dark);
     }
@@ -347,7 +335,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
       min-width: 0;
     }
 
@@ -359,13 +347,12 @@
     }
 
     .tag-badge {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 6px;
+      padding: 2px 6px;
+      border-radius: 5px;
       border: 1.5px solid var(--border-dark);
       text-transform: uppercase;
-      letter-spacing: 0.3px;
     }
 
     .tag-footage { background: #FFD166; color: #3E2723; }
@@ -374,23 +361,50 @@
     .tag-urgent { background: #FF5A5F; color: #FFF; }
     .tag-general { background: #E2E2E2; color: #3E2723; }
 
+    .subtask-badge {
+      background: #E8F0FE;
+      color: #1A73E8;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid #1A73E8;
+    }
+
     .task-title {
       font-size: 0.95rem;
-      font-weight: 500;
-      line-height: 1.4;
+      font-weight: 600;
+      line-height: 1.35;
       word-break: break-word;
     }
 
-    .task-item.completed .task-title {
+    .task-card.completed .task-title {
       text-decoration: line-through;
       color: #7D7465;
     }
 
     .task-desc {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       line-height: 1.35;
       word-break: break-word;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .btn-toggle-sub {
+      background: #F0ECE1;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     .task-delete {
@@ -398,29 +412,113 @@
       border: none;
       color: #9E9E9E;
       cursor: pointer;
-      font-size: 1.1rem;
-      padding: 2px 6px;
-      border-radius: 6px;
-      flex-shrink: 0;
-      align-self: center;
-      transition: color 0.15s;
+      font-size: 1rem;
+      padding: 2px 5px;
+      border-radius: 5px;
     }
     .task-delete:hover {
       color: var(--accent-coral);
     }
 
+    /* Subtask Section (Nested Checklist) */
+    .subtasks-wrapper {
+      background: #FDFBF5;
+      border-top: 2px dashed #D6C7A7;
+      padding: 8px 12px 10px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .subtask-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 8px;
+      background: white;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 8px;
+      box-shadow: 1.5px 1.5px 0 var(--border-dark);
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .subtask-item .custom-check {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 0 var(--border-dark);
+      margin-top: 0;
+    }
+
+    .subtask-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      flex: 1;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .subtask-item.completed .subtask-title {
+      text-decoration: line-through;
+      color: #8D6E63;
+    }
+
+    .subtask-delete {
+      background: none;
+      border: none;
+      color: #BCAAA4;
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .subtask-delete:hover {
+      color: var(--accent-coral);
+    }
+
+    /* Add Subtask Row */
+    .add-subtask-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .input-subtask {
+      flex: 1;
+      height: 32px;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 7px;
+      padding: 0 8px;
+      font-size: 0.8rem;
+      outline: none;
+      background: white;
+    }
+
+    .btn-add-sub {
+      background: var(--accent-coral);
+      color: white;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 7px;
+      padding: 0 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
     /* Empty State */
     .empty-state {
       text-align: center;
-      padding: 40px 20px;
+      padding: 35px 20px;
       background: rgba(255, 255, 255, 0.7);
       border: 2px dashed #BCAAA4;
       border-radius: var(--radius);
       color: var(--text-muted);
     }
     .empty-icon {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
     }
 
     /* Floating Quick Add Bar at Bottom (Sticky) */
@@ -431,7 +529,7 @@
       right: 0;
       background: var(--bg-cream);
       border-top: 3px solid var(--border-dark);
-      padding: 10px 16px calc(10px + var(--safe-bottom));
+      padding: 8px 12px calc(8px + var(--safe-bottom));
       display: flex;
       justify-content: center;
       z-index: 100;
@@ -442,31 +540,28 @@
       width: 100%;
       max-width: 680px;
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .input-task {
       flex: 1;
-      height: 48px;
+      height: 44px;
       border: 2.5px solid var(--border-dark);
-      border-radius: 12px;
-      padding: 0 14px;
-      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 0.9rem;
       box-shadow: var(--shadow-comic);
       outline: none;
       background: white;
     }
-    .input-task:focus {
-      border-color: var(--accent-coral);
-    }
 
     .select-category {
-      width: 110px;
-      height: 48px;
+      width: 105px;
+      height: 44px;
       border: 2.5px solid var(--border-dark);
-      border-radius: 12px;
-      padding: 0 8px;
-      font-size: 0.8rem;
+      border-radius: 10px;
+      padding: 0 6px;
+      font-size: 0.78rem;
       font-weight: 600;
       box-shadow: var(--shadow-comic);
       background: white;
@@ -475,24 +570,23 @@
     }
 
     .btn-add {
-      width: 50px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       background: var(--accent-coral);
       color: white;
       border: 2.5px solid var(--border-dark);
-      border-radius: 12px;
+      border-radius: 10px;
       box-shadow: var(--shadow-comic);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: transform 0.1s;
     }
     .btn-add:active {
-      transform: translate(2px, 2px);
+      transform: translate(1px, 1px);
       box-shadow: 1px 1px 0 var(--border-dark);
     }
 
@@ -506,7 +600,7 @@
       align-items: center;
       justify-content: center;
       z-index: 999;
-      padding: 16px;
+      padding: 14px;
     }
     .modal-overlay.active {
       display: flex;
@@ -518,16 +612,16 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow-comic-lg);
       width: 100%;
-      max-width: 520px;
-      padding: 20px;
+      max-width: 500px;
+      padding: 18px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .modal-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       display: flex;
       justify-content: space-between;
@@ -536,12 +630,12 @@
 
     .modal-textarea {
       width: 100%;
-      height: 240px;
+      height: 220px;
       border: 2px solid var(--border-dark);
-      border-radius: 10px;
-      padding: 10px;
+      border-radius: 9px;
+      padding: 8px;
       font-family: monospace;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       resize: vertical;
       outline: none;
     }
@@ -549,20 +643,21 @@
     .modal-btn-row {
       display: flex;
       justify-content: flex-end;
-      gap: 8px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     /* Toast Notification */
     .toast {
       position: fixed;
-      bottom: calc(75px + var(--safe-bottom));
+      bottom: calc(70px + var(--safe-bottom));
       background: var(--border-dark);
       color: white;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       opacity: 0;
       transform: translateY(10px);
       transition: all 0.25s ease;
@@ -588,7 +683,7 @@
           </div>
           <div class="brand-subtitle">สาวการ์ดเกมที่ติดเกมนิดหน่อย • เคลียร์งานนอกสถานที่</div>
         </div>
-        <div class="header-actions">
+        <div>
           <button class="btn-icon" onclick="openExportModal()" title="คัดลอกหรือแชร์">
             📋 แชร์ / MD
           </button>
@@ -607,17 +702,17 @@
       </div>
     </header>
 
-    <!-- Quick Outdoor Footage Template Banner -->
+    <!-- Quick Preset Banner (Footage Project with Sub-shots) -->
     <div class="preset-banner">
       <div class="preset-text">
-        <strong>📹 ออกไปถ่ายงานข้างนอก?</strong>
-        <div style="font-size: 0.78rem; color: #6D4C41;">กดเพิ่มเช็กลิสต์ช็อต Footage มาตรฐานในคลิกเดียว</div>
+        <strong>📹 เพิ่มโปรเจกต์ถ่ายงาน (มีช็อตย่อย)?</strong>
+        <div style="font-size: 0.75rem; color: #6D4C41;">สร้างหัวข้อหลักพร้อมช็อตย่อย (Hook, Closeup, Reaction, หน้างาน)</div>
       </div>
-      <button class="btn-preset" onclick="addFootagePreset()">+ โหลดเช็กลิสต์ถ่ายคลิป</button>
+      <button class="btn-preset" onclick="promptAddFootageProject()">+ โปรเจกต์ถ่ายคลิป</button>
     </div>
 
-    <!-- Category Filter Tabs -->
-    <div class="category-scroll" id="cat-tabs">
+    <!-- Category Filter Pills (Wrapped Grid, No Horizontal Scroll Nightmare) -->
+    <div class="category-grid" id="cat-tabs">
       <!-- Injected by JS -->
     </div>
 
@@ -644,7 +739,7 @@
         type="text" 
         id="new-task-input" 
         class="input-task" 
-        placeholder="พิมพ์งานใหม่... เช่น ถ่าย B-roll ร้านการ์ด" 
+        placeholder="พิมพ์หัวข้องานใหม่..." 
         autocomplete="off"
         required
       />
@@ -663,16 +758,16 @@
   <div class="modal-overlay" id="export-modal" onclick="closeModalOnBackdrop(event)">
     <div class="modal-card">
       <div class="modal-title">
-        <span>📋 Markdown & Backup</span>
+        <span>📋 สรุปรายการงาน (Markdown)</span>
         <button class="btn-icon" onclick="closeExportModal()">✕</button>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">
-        คัดลอกข้อความด้านล่างเพื่อนำไปแปะใน <code>urgent_todo_list.md</code> หรือส่งต่อใน LINE/แชท:
+      <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+        ข้อมูลถูกบันทึกในมือถือเครื่องนี้ เมื่อติ๊กงานเสร็จแล้ว ให้กดปุ่ม <strong>"คัดลอกข้อความ"</strong> ด้านล่าง แล้วส่งเข้า LINE เพื่อนำมาอัปเดตกลับเข้าคอมได้ทันทีครับ
       </p>
       <textarea id="export-markdown" class="modal-textarea" readonly></textarea>
       <div class="modal-btn-row">
-        <button class="btn-icon" onclick="copyMarkdownText()">📋 คัดลอกข้อความ</button>
-        <button class="btn-icon" style="background: #E0E0E0;" onclick="resetToDefault()">🔄 คืนค่าเริ่มต้น</button>
+        <button class="btn-icon" style="background: var(--accent-coral); color: white;" onclick="copyMarkdownText()">📋 คัดลอกข้อความ</button>
+        <button class="btn-icon" style="background: #EFE6D0;" onclick="resetToDefault()">🔄 คืนค่าตัวอย่าง</button>
       </div>
     </div>
   </div>
@@ -681,81 +776,64 @@
   <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
 
   <script>
-    const STORAGE_KEY = 'palamx_tasks_v1';
+    const STORAGE_KEY = 'palamx_tasks_v2'; // upgrade key for nested structure
 
-    // Default Initial Data
+    // Default Initial Data with Nested Subtasks (Parent + Sub-checklists)
     const DEFAULT_TASKS = [
-      // Tasks from user request & current urgent list
       {
-        id: 'task-1',
+        id: 'task-ubl',
+        title: '🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball)',
+        desc: 'รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน',
+        cat: 'footage',
+        completed: false,
+        isOpen: true,
+        subtasks: [
+          { id: 'sub-u1', title: 'ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน', completed: false },
+          { id: 'sub-u2', title: 'ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL', completed: false },
+          { id: 'sub-u3', title: 'ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค', completed: false },
+          { id: 'sub-u4', title: 'รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story', completed: false }
+        ]
+      },
+      {
+        id: 'task-thaicard',
+        title: '🎴 คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)',
+        desc: 'รวมช็อตแกะซอง & รีวิวผลงานการ์ดเกมสัญชาติไทย',
+        cat: 'content',
+        completed: false,
+        isOpen: true,
+        subtasks: [
+          { id: 'sub-t1', title: 'ช็อต Hook เปิดคลิป: เกริ่นว่าการ์ดไทยน่าเล่นยังไง', completed: false },
+          { id: 'sub-t2', title: 'ช็อตโคลสอัพ: หน้าการ์ด Art งานวาด & ความเงาการ์ด', completed: false },
+          { id: 'sub-t3', title: 'ช็อต Reaction: ลุ้นแกะซองได้การ์ด Secret', completed: false },
+          { id: 'sub-t4', title: 'สรุปจุดเด่น & ช่องทางสนับสนุนการ์ดไทย', completed: false }
+        ]
+      },
+      {
+        id: 'task-ezdonate',
         title: 'ลดเสียง EasyDonate (Alert Sound)',
         desc: 'ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์',
         cat: 'stream',
-        completed: false
+        completed: false,
+        isOpen: false,
+        subtasks: []
       },
       {
-        id: 'task-2',
-        title: 'คลิปเล่าเรื่อง UBL (Pokémon Ultra Ball League)',
-        desc: 'วางสตอรี่บอร์ด/ตัดต่อ เล่าประสบการณ์ โมเมนต์ฮาๆ และผลการแข่งสไตล์เพื่อนเม้าท์มอย',
-        cat: 'content',
-        completed: false
-      },
-      {
-        id: 'task-3',
-        title: 'คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)',
-        desc: 'แกะซอง/รีวิว หรือป้ายยาการ์ดเกมสัญชาติไทย ชูภาพลักษณ์สาวการ์ดเกมที่สนับสนุนวงการ TCG ไทย',
-        cat: 'content',
-        completed: false
-      },
-      {
-        id: 'task-4',
+        id: 'task-obs',
         title: 'ปรับ OBS Overlay (Floating Sticker UI)',
         desc: 'จอเกมเต็ม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง',
         cat: 'stream',
-        completed: false
+        completed: false,
+        isOpen: false,
+        subtasks: []
       },
       {
-        id: 'task-5',
+        id: 'task-shorts',
         title: 'อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์',
         desc: 'รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels',
         cat: 'urgent',
-        completed: false
-      },
-      // Footage Checklist items for on-location / outdoor shoot
-      {
-        id: 'task-6',
-        title: '📸 ช็อตเปิดคลิป (Hook หน้ากล้อง 3-5 วินาที)',
-        desc: 'ทักทายคนดูแบบตื่นเต้น พูดประเด็นน่าสนใจทันที เช่น "วันนี้เรามาแข่งการ์ดที่..."',
-        cat: 'footage',
-        completed: false
-      },
-      {
-        id: 'task-7',
-        title: '🎴 ช็อตโคลสอัพการ์ด & หน้าซองแบบชัดๆ',
-        desc: 'หมุนกล้องถ่ายดีเทลการ์ดใบเด็ด แสงสวยๆ นิ่งๆ 5 วินาที',
-        cat: 'footage',
-        completed: false
-      },
-      {
-        id: 'task-8',
-        title: '😱 ช็อต Reaction / รีแอ็กชั่นหน้าเหวอ',
-        desc: 'จังหวะลุ้นเปิดซอง หรือจังหวะโดนคอมโบในการแข่ง',
-        cat: 'footage',
-        completed: false
-      },
-      {
-        id: 'task-9',
-        title: '🏟️ ช็อต B-Roll บรรยากาศงานแข่ง & ผู้คนในยิม',
-        desc: 'ถ่ายกวาดบรรยากาศงาน ร้านการ์ด คนกำลังดวลกัน',
-        cat: 'footage',
-        completed: false
-      },
-      {
-        id: 'task-10',
-        title: '🤳 ถ่ายรูปนิ่งแนวตั้งถือเด็ค/การ์ด สำหรับ IG Feed & Story',
-        desc: 'รูปถ่ายไลฟ์สไตล์ตัวเองถือการ์ด แสงดีๆ เอาไว้ลงโปรโมท',
-        cat: 'footage',
-        completed: false
+        completed: false,
+        isOpen: false,
+        subtasks: []
       }
     ];
 
@@ -764,14 +842,13 @@
       footage: { label: '📹 ถ่ายงาน & Footage', badge: 'Footage', class: 'tag-footage' },
       content: { label: '🎬 คอนเทนต์', badge: 'คอนเทนต์', class: 'tag-content' },
       stream: { label: '🎙️ สตรีม/OBS', badge: 'สตรีม', class: 'tag-stream' },
-      urgent: { label: '🎯 งานด่วน P0-P2', badge: 'งานด่วน', class: 'tag-urgent' },
+      urgent: { label: '🎯 งานด่วน', badge: 'งานด่วน', class: 'tag-urgent' },
       general: { label: '📦 ทั่วไป', badge: 'ทั่วไป', class: 'tag-general' }
     };
 
     let tasks = [];
     let currentFilter = 'all';
 
-    // Load from LocalStorage or use default
     function loadTasks() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
@@ -791,7 +868,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
       } catch (e) {
-        console.error('LocalStorage save error', e);
+        console.error('LocalStorage error', e);
       }
     }
 
@@ -802,29 +879,114 @@
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    function toggleTask(id) {
+    function triggerHaptic() {
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(20);
+      }
+    }
+
+    // Toggle Main Task
+    function toggleMainTask(id, event) {
+      if (event) event.stopPropagation();
       const t = tasks.find(item => item.id === id);
+      if (!t) return;
+
+      const targetStatus = !t.completed;
+      t.completed = targetStatus;
+
+      // If has subtasks, toggle all subtasks as well
+      if (t.subtasks && t.subtasks.length > 0) {
+        t.subtasks.forEach(s => s.completed = targetStatus);
+      }
+
+      triggerHaptic();
+      saveTasks();
+      render();
+    }
+
+    // Toggle Subtask
+    function toggleSubtask(taskId, subId, event) {
+      if (event) event.stopPropagation();
+      const parent = tasks.find(item => item.id === taskId);
+      if (!parent || !parent.subtasks) return;
+
+      const sub = parent.subtasks.find(s => s.id === subId);
+      if (!sub) return;
+
+      sub.completed = !sub.completed;
+
+      // Auto check parent if all subtasks are complete
+      const allDone = parent.subtasks.every(s => s.completed);
+      parent.completed = allDone;
+
+      triggerHaptic();
+      saveTasks();
+      render();
+    }
+
+    // Toggle Subtask Accordion (Open/Close)
+    function toggleAccordion(taskId, event) {
+      if (event) event.stopPropagation();
+      const t = tasks.find(item => item.id === taskId);
       if (t) {
-        t.completed = !t.completed;
+        t.isOpen = !t.isOpen;
         saveTasks();
-        // Haptic feedback on mobile if supported
-        if (window.navigator && window.navigator.vibrate) {
-          window.navigator.vibrate(20);
-        }
         render();
       }
     }
 
+    // Add Subtask
+    function handleAddSubtask(taskId, event) {
+      event.preventDefault();
+      const input = document.getElementById(`sub-input-${taskId}`);
+      if (!input) return;
+      const title = input.value.trim();
+      if (!title) return;
+
+      const parent = tasks.find(item => item.id === taskId);
+      if (!parent) return;
+
+      if (!parent.subtasks) parent.subtasks = [];
+      parent.subtasks.push({
+        id: 'sub-' + Date.now() + '-' + Math.random().toString(36).substr(2, 3),
+        title: title,
+        completed: false
+      });
+      parent.completed = false; // new item added
+      parent.isOpen = true;
+
+      input.value = '';
+      saveTasks();
+      showToast('เพิ่มช็อตย่อยแล้ว! 📹');
+      render();
+    }
+
+    // Delete Subtask
+    function deleteSubtask(taskId, subId, event) {
+      if (event) event.stopPropagation();
+      const parent = tasks.find(item => item.id === taskId);
+      if (!parent || !parent.subtasks) return;
+
+      parent.subtasks = parent.subtasks.filter(s => s.id !== subId);
+      if (parent.subtasks.length > 0) {
+        parent.completed = parent.subtasks.every(s => s.completed);
+      }
+      saveTasks();
+      render();
+    }
+
+    // Delete Main Task
     function deleteTask(id, event) {
-      event.stopPropagation();
-      if (confirm('ต้องการลบงานนี้หรือไม่?')) {
+      if (event) event.stopPropagation();
+      if (confirm('ต้องการลบหัวข้อนี้พร้อมรายการย่อยทั้งหมดหรือไม่?')) {
         tasks = tasks.filter(item => item.id !== id);
         saveTasks();
-        showToast('ลบงานเรียบร้อย');
+        showToast('ลบรายการเรียบร้อย');
         render();
       }
     }
 
+    // Handle Add New Main Task
     function handleAddTask(e) {
       e.preventDefault();
       const input = document.getElementById('new-task-input');
@@ -838,49 +1000,69 @@
         title: text,
         desc: '',
         cat: catSelect.value,
-        completed: false
+        completed: false,
+        isOpen: true,
+        subtasks: []
       };
 
       tasks.unshift(newTask);
       saveTasks();
       input.value = '';
-      showToast('เพิ่มงานใหม่แล้ว! ✨');
+      showToast('เพิ่มหัวข้อใหม่แล้ว! ✨');
       render();
     }
 
+    // Prompt Add Footage Project Preset
+    function promptAddFootageProject() {
+      const name = prompt('กรุณาใส่ชื่อคลิป/งานที่ต้องการถ่าย (เช่น UBL Ep.2 หรือ คลิปการ์ดไทย):', 'คลิปเล่าเรื่องงานแข่ง');
+      if (!name) return;
+
+      const newProject = {
+        id: 'task-' + Date.now(),
+        title: `📹 ${name}`,
+        desc: 'รวมเช็กลิสต์ช็อตถ่ายงาน & Footage',
+        cat: 'footage',
+        completed: false,
+        isOpen: true,
+        subtasks: [
+          { id: 'sub-' + Date.now() + '-1', title: '🎬 ช็อต Hook เปิดคลิปหน้ากล้อง (3-5 วิ)', completed: false },
+          { id: 'sub-' + Date.now() + '-2', title: '🎴 ช็อตโคลสอัพการ์ด / รายละเอียดสินค้าชัดๆ', completed: false },
+          { id: 'sub-' + Date.now() + '-3', title: '👥 ช็อตคนกำลังเล่น / บรรยากาศหน้างาน', completed: false },
+          { id: 'sub-' + Date.now() + '-4', title: '😱 ช็อต Reaction / รีแอ็กชั่นหน้าเหวอ', completed: false },
+          { id: 'sub-' + Date.now() + '-5', title: '🤳 รูปถ่ายแนวตั้งถือการ์ดลง IG Post & Story', completed: false }
+        ]
+      };
+
+      tasks.unshift(newProject);
+      saveTasks();
+      currentFilter = 'footage';
+      showToast('สร้างโปรเจกต์ถ่ายคลิปพร้อม 5 ช็อตย่อยแล้ว! 🎬');
+      render();
+    }
+
+    // Clear Completed Tasks
     function clearCompleted() {
-      const completedCount = tasks.filter(t => t.completed).length;
-      if (completedCount === 0) {
+      let clearedCount = 0;
+
+      tasks.forEach(t => {
+        if (t.subtasks && t.subtasks.length > 0) {
+          const before = t.subtasks.length;
+          t.subtasks = t.subtasks.filter(s => !s.completed);
+          clearedCount += (before - t.subtasks.length);
+        }
+      });
+
+      const fullyCompleted = tasks.filter(t => t.completed && (!t.subtasks || t.subtasks.length === 0));
+      clearedCount += fullyCompleted.length;
+      tasks = tasks.filter(t => !(t.completed && (!t.subtasks || t.subtasks.length === 0)));
+
+      if (clearedCount === 0) {
         showToast('ยังไม่มีงานที่ติ๊กเสร็จครับ');
         return;
       }
-      if (confirm(`ต้องการลบงานที่เสร็จแล้ว (${completedCount} รายการ) ออกจากลิสต์หรือไม่?`)) {
-        tasks = tasks.filter(t => !t.completed);
-        saveTasks();
-        showToast(`เคลียร์งานเสร็จแล้ว ${completedCount} รายการ!`);
-        render();
-      }
-    }
-
-    function addFootagePreset() {
-      const footagePresets = [
-        { title: '🎬 ช็อตเปิดคลิป (Hook หน้ากล้อง)', desc: 'ทักทายคนดูแบบมีพลัง เกริ่นหัวข้อคลิป', cat: 'footage', completed: false },
-        { title: '🎴 ช็อตโคลสอัพการ์ด / รายละเอียดสินค้า', desc: 'ถ่ายระยะประชิด ชัดๆ หมุนการ์ดรับแสง', cat: 'footage', completed: false },
-        { title: '😱 ช็อต Reaction / รีแอ็กชั่นตอนเล่นหรือแกะ', desc: 'หน้าเหวอ ดีใจ หรือตื่นเต้น', cat: 'footage', completed: false },
-        { title: '🏟️ ช็อต B-Roll สถานที่ / บรรยากาศยิม & ร้าน', desc: 'กวาดกล้องดูความคึกคัก', cat: 'footage', completed: false },
-        { title: '🤳 ถ่ายรูปนิ่งคู่การ์ดลง IG Post & Story', desc: 'รูปแนวตั้งสำหรับโปรโมทโซเชียล', cat: 'footage', completed: false }
-      ];
-
-      footagePresets.forEach(item => {
-        tasks.push({
-          id: 'task-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
-          ...item
-        });
-      });
 
       saveTasks();
-      currentFilter = 'footage';
-      showToast('โหลดเช็กลิสต์ถ่ายงาน 5 ช็อตเรียบร้อย! 📹');
+      showToast(`เคลียร์งานที่เสร็จแล้ว ${clearedCount} รายการ!`);
       render();
     }
 
@@ -890,9 +1072,9 @@
     }
 
     function render() {
-      // 1. Update Category Tabs
-      const catTabsContainer = document.getElementById('cat-tabs');
-      catTabsContainer.innerHTML = '';
+      // 1. Render Category Pills (Fixed Wrap, No Scroll Needed!)
+      const catContainer = document.getElementById('cat-tabs');
+      catContainer.innerHTML = '';
 
       Object.keys(CATEGORIES).forEach(key => {
         const catInfo = CATEGORIES[key];
@@ -907,18 +1089,17 @@
           <span>${catInfo.label}</span>
           <span class="cat-count">${count}</span>
         `;
-        catTabsContainer.appendChild(pill);
+        catContainer.appendChild(pill);
       });
 
-      // 2. Filter Tasks
+      // 2. Filter & Sort
       const filtered = currentFilter === 'all'
         ? tasks
         : tasks.filter(t => t.cat === currentFilter);
 
-      // Sort: incomplete first, then completed
       const sorted = [...filtered].sort((a, b) => Number(a.completed) - Number(b.completed));
 
-      // 3. Render Task List
+      // 3. Render Task Cards
       const listContainer = document.getElementById('task-list');
       listContainer.innerHTML = '';
 
@@ -929,42 +1110,102 @@
         listContainer.innerHTML = `
           <div class="empty-state">
             <div class="empty-icon">🎉</div>
-            <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 4px;">ไม่มีงานค้างในหมวดนี้!</div>
-            <div style="font-size: 0.85rem;">กดปุ่มด้านล่างเพื่อเพิ่มงาน หรือเปลี่ยนหมวดหมู่ดูนะ</div>
+            <div style="font-weight: 600; font-size: 1rem; margin-bottom: 4px;">ไม่มีงานค้างในหมวดนี้!</div>
+            <div style="font-size: 0.8rem;">กดปุ่มด้านล่างเพื่อเพิ่มงาน หรือเปลี่ยนหมวดดูนะ</div>
           </div>
         `;
       } else {
         sorted.forEach(t => {
-          const catData = CATEGORIES[t.cat] || { badge: t.cat, class: 'tag-general' };
-          const item = document.createElement('div');
-          item.className = `task-item ${t.completed ? 'completed' : ''}`;
-          item.onclick = () => toggleTask(t.id);
+          const hasSubtasks = t.subtasks && t.subtasks.length > 0;
+          const subTotal = hasSubtasks ? t.subtasks.length : 0;
+          const subDone = hasSubtasks ? t.subtasks.filter(s => s.completed).length : 0;
 
-          item.innerHTML = `
-            <div class="checkbox-wrap">
+          const catData = CATEGORIES[t.cat] || { badge: t.cat, class: 'tag-general' };
+
+          const card = document.createElement('div');
+          card.className = `task-card ${t.completed ? 'completed' : ''}`;
+
+          // Main Task Row
+          let mainRowHtml = `
+            <div class="task-main-row" onclick="toggleMainTask('${t.id}', event)">
               <div class="custom-check">
                 ${t.completed ? '✓' : ''}
               </div>
-            </div>
-            <div class="task-content">
-              <div class="task-header-row">
-                <span class="tag-badge ${catData.class}">${catData.badge}</span>
+              <div class="task-content">
+                <div class="task-header-row">
+                  <span class="tag-badge ${catData.class}">${catData.badge}</span>
+                  ${hasSubtasks ? `<span class="subtask-badge">ช็อตย่อย: ${subDone}/${subTotal}</span>` : ''}
+                </div>
+                <div class="task-title">${escapeHtml(t.title)}</div>
+                ${t.desc ? `<div class="task-desc">${escapeHtml(t.desc)}</div>` : ''}
               </div>
-              <div class="task-title">${escapeHtml(t.title)}</div>
-              ${t.desc ? `<div class="task-desc">${escapeHtml(t.desc)}</div>` : ''}
+              <div class="card-actions" onclick="event.stopPropagation()">
+                ${hasSubtasks ? `
+                  <button class="btn-toggle-sub" onclick="toggleAccordion('${t.id}', event)">
+                    ${t.isOpen ? '▲ ซ่อน' : '▼ ช็อตย่อย'}
+                  </button>
+                ` : `
+                  <button class="btn-toggle-sub" onclick="toggleAccordion('${t.id}', event)">
+                    + ช็อตย่อย
+                  </button>
+                `}
+                <button class="task-delete" onclick="deleteTask('${t.id}', event)" title="ลบ">🗑️</button>
+              </div>
             </div>
-            <button class="task-delete" onclick="deleteTask('${t.id}', event)" title="ลบ">🗑️</button>
           `;
-          listContainer.appendChild(item);
+
+          // Subtasks Accordion Section
+          let subtaskSectionHtml = '';
+          if (t.isOpen) {
+            let subItemsHtml = '';
+            if (hasSubtasks) {
+              t.subtasks.forEach(s => {
+                subItemsHtml += `
+                  <div class="subtask-item ${s.completed ? 'completed' : ''}" onclick="toggleSubtask('${t.id}', '${s.id}', event)">
+                    <div class="custom-check">
+                      ${s.completed ? '✓' : ''}
+                    </div>
+                    <div class="subtask-title">${escapeHtml(s.title)}</div>
+                    <button class="subtask-delete" onclick="deleteSubtask('${t.id}', '${s.id}', event)" title="ลบช็อตนี้">✕</button>
+                  </div>
+                `;
+              });
+            }
+
+            subtaskSectionHtml = `
+              <div class="subtasks-wrapper">
+                ${subItemsHtml}
+                <form class="add-subtask-row" onsubmit="handleAddSubtask('${t.id}', event)">
+                  <input type="text" id="sub-input-${t.id}" class="input-subtask" placeholder="+ เพิ่มช็อตย่อย เช่น ฟุตเทจหน้างาน..." required />
+                  <button type="submit" class="btn-add-sub">+ เพิ่มช็อต</button>
+                </form>
+              </div>
+            `;
+          }
+
+          card.innerHTML = mainRowHtml + subtaskSectionHtml;
+          listContainer.appendChild(card);
         });
       }
 
-      // 4. Update Progress Bar
-      const total = tasks.length;
-      const completed = tasks.filter(t => t.completed).length;
-      const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
+      // 4. Calculate Overall Progress (Includes Subtasks)
+      let totalItems = 0;
+      let completedItems = 0;
 
-      document.getElementById('progress-summary').textContent = `เสร็จแล้ว ${completed} จาก ${total} งาน`;
+      tasks.forEach(t => {
+        if (t.subtasks && t.subtasks.length > 0) {
+          t.subtasks.forEach(s => {
+            totalItems++;
+            if (s.completed) completedItems++;
+          });
+        } else {
+          totalItems++;
+          if (t.completed) completedItems++;
+        }
+      });
+
+      const pct = totalItems === 0 ? 0 : Math.round((completedItems / totalItems) * 100);
+      document.getElementById('progress-summary').textContent = `เสร็จแล้ว ${completedItems} จาก ${totalItems} จุด`;
       document.getElementById('progress-percent').textContent = `${pct}%`;
       document.getElementById('progress-fill').style.width = `${pct}%`;
     }
@@ -987,7 +1228,16 @@
         if (catTasks.length > 0) {
           md += `### ${CATEGORIES[c]?.label || c}\n`;
           catTasks.forEach(t => {
-            md += `- [${t.completed ? 'x' : ' '}] **${t.title}**${t.desc ? ` — ${t.desc}` : ''}\n`;
+            const hasSub = t.subtasks && t.subtasks.length > 0;
+            const subDone = hasSub ? t.subtasks.filter(s => s.completed).length : 0;
+            const subTotal = hasSub ? t.subtasks.length : 0;
+
+            md += `- [${t.completed ? 'x' : ' '}] **${t.title}**${hasSub ? ` (${subDone}/${subTotal})` : ''}\n`;
+            if (hasSub) {
+              t.subtasks.forEach(s => {
+                md += `  - [${s.completed ? 'x' : ' '}] ${s.title}\n`;
+              });
+            }
           });
           md += `\n`;
         }
@@ -1002,9 +1252,7 @@
     }
 
     function closeModalOnBackdrop(e) {
-      if (e.target.id === 'export-modal') {
-        closeExportModal();
-      }
+      if (e.target.id === 'export-modal') closeExportModal();
     }
 
     function copyMarkdownText() {
@@ -1019,11 +1267,11 @@
     }
 
     function resetToDefault() {
-      if (confirm('ต้องการรีเซ็ตงานทั้งหมดกลับเป็นค่าเริ่มต้นหรือไม่? (งานที่คุณเพิ่มเองจะหายไป)')) {
+      if (confirm('ต้องการรีเซ็ตงานทั้งหมดกลับเป็นตัวอย่างเริ่มต้นหรือไม่?')) {
         tasks = [...DEFAULT_TASKS];
         saveTasks();
         closeExportModal();
-        showToast('รีเซ็ตเป็นค่าเริ่มต้นแล้ว');
+        showToast('รีเซ็ตเป็นตัวอย่างเริ่มต้นแล้ว');
         render();
       }
     }
