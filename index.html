@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Palamx Todo">
+  <meta name="theme-color" content="#FFE066">
+  <!-- Inline App Icon for Home Screen & Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23FFE066'/><text y='65' x='50' font-size='55' text-anchor='middle'>📋</text></svg>">
+  <title>Palampampamx • Task & Footage Checklist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF0D7;
+      --bg-yellow: #FFE066;
+      --bg-card: #FFFFFF;
+      --border-dark: #3E2723;
+      --text-main: #3E2723;
+      --text-muted: #795548;
+      --accent-coral: #FF5A5F;
+      --accent-orange: #FF8C42;
+      --accent-green: #2EC4B6;
+      --accent-purple: #845EC2;
+      --accent-blue: #0081CF;
+      --shadow-comic: 3px 3px 0px var(--border-dark);
+      --shadow-comic-lg: 5px 5px 0px var(--border-dark);
+      --radius: 14px;
+      --safe-bottom: env(safe-area-inset-bottom, 16px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: calc(90px + var(--safe-bottom));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: radial-gradient(#d6c7a7 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      padding: 16px;
+    }
+
+    /* Top Sticky Header */
+    header {
+      background: var(--bg-yellow);
+      border: 3px solid var(--border-dark);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-comic-lg);
+      padding: 16px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-tag {
+      background: var(--accent-coral);
+      color: white;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 2px solid var(--border-dark);
+      box-shadow: 2px 2px 0 var(--border-dark);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-icon {
+      background: white;
+      border: 2px solid var(--border-dark);
+      border-radius: 10px;
+      box-shadow: 2px 2px 0 var(--border-dark);
+      padding: 6px 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .btn-icon:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 var(--border-dark);
+    }
+
+    /* Progress Bar */
+    .progress-box {
+      background: white;
+      border: 2px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 2px 2px 0 var(--border-dark);
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      background: #EFE6D0;
+      border: 2px solid var(--border-dark);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-coral), var(--accent-orange));
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 20px;
+    }
+
+    /* Quick Preset Banner (Specially for Mobile / Outdoor Shooting) */
+    .preset-banner {
+      background: #FFF8E7;
+      border: 2px dashed var(--border-dark);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .preset-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .btn-preset {
+      background: var(--accent-orange);
+      color: white;
+      border: 2px solid var(--border-dark);
+      box-shadow: 2px 2px 0 var(--border-dark);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-preset:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--border-dark);
+    }
+
+    /* Category Filter Tabs (Horizontal Scroll) */
+    .category-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .category-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-pill {
+      background: white;
+      border: 2px solid var(--border-dark);
+      border-radius: 30px;
+      box-shadow: 2px 2px 0 var(--border-dark);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .cat-pill.active {
+      background: var(--border-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 2px 4px 0 rgba(0,0,0,0.3);
+    }
+
+    .cat-count {
+      background: rgba(0,0,0,0.08);
+      padding: 1px 6px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+    }
+    .cat-pill.active .cat-count {
+      background: rgba(255,255,255,0.25);
+      color: white;
+    }
+
+    /* Section Control & Bulk Clear */
+    .list-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+
+    .toolbar-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-clear-done {
+      background: transparent;
+      border: none;
+      color: var(--accent-coral);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .btn-clear-done:hover {
+      background: rgba(255, 90, 95, 0.1);
+    }
+
+    /* Task List */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .task-item {
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-comic);
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .task-item:active {
+      transform: translateY(1px);
+    }
+
+    .task-item.completed {
+      background: #F4EEDC;
+      border-color: #A89F91;
+      box-shadow: 1px 1px 0px #A89F91;
+      opacity: 0.75;
+    }
+
+    /* Custom Comic Checkbox (Large Touch Target for Mobile) */
+    .checkbox-wrap {
+      cursor: pointer;
+      position: relative;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .custom-check {
+      width: 26px;
+      height: 26px;
+      border: 2.5px solid var(--border-dark);
+      border-radius: 7px;
+      background: white;
+      box-shadow: 2px 2px 0 var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: white;
+      transition: all 0.15s;
+    }
+
+    .task-item.completed .custom-check {
+      background: var(--accent-green);
+      border-color: var(--border-dark);
+    }
+
+    .task-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .task-header-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .tag-footage { background: #FFD166; color: #3E2723; }
+    .tag-content { background: #FF99C8; color: #3E2723; }
+    .tag-stream { background: #D0F4DE; color: #1B4931; }
+    .tag-urgent { background: #FF5A5F; color: #FFF; }
+    .tag-general { background: #E2E2E2; color: #3E2723; }
+
+    .task-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: #7D7465;
+    }
+
+    .task-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .task-delete {
+      background: none;
+      border: none;
+      color: #9E9E9E;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 2px 6px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      align-self: center;
+      transition: color 0.15s;
+    }
+    .task-delete:hover {
+      color: var(--accent-coral);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px dashed #BCAAA4;
+      border-radius: var(--radius);
+      color: var(--text-muted);
+    }
+    .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    /* Floating Quick Add Bar at Bottom (Sticky) */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-cream);
+      border-top: 3px solid var(--border-dark);
+      padding: 10px 16px calc(10px + var(--safe-bottom));
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.06);
+    }
+
+    .add-form {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-task {
+      flex: 1;
+      height: 48px;
+      border: 2.5px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 0 14px;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-comic);
+      outline: none;
+      background: white;
+    }
+    .input-task:focus {
+      border-color: var(--accent-coral);
+    }
+
+    .select-category {
+      width: 110px;
+      height: 48px;
+      border: 2.5px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 0 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-comic);
+      background: white;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-add {
+      width: 50px;
+      height: 48px;
+      background: var(--accent-coral);
+      color: white;
+      border: 2.5px solid var(--border-dark);
+      border-radius: 12px;
+      box-shadow: var(--shadow-comic);
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.1s;
+    }
+    .btn-add:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--border-dark);
+    }
+
+    /* Modal for Export / Markdown */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 16px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      border: 3px solid var(--border-dark);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-comic-lg);
+      width: 100%;
+      max-width: 520px;
+      padding: 20px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-textarea {
+      width: 100%;
+      height: 240px;
+      border: 2px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      resize: vertical;
+      outline: none;
+    }
+
+    .modal-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: calc(75px + var(--safe-bottom));
+      background: var(--border-dark);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <div>
+          <div class="brand-title">
+            <span>✨ Palampampamx</span>
+            <span class="brand-tag">TO-DO</span>
+          </div>
+          <div class="brand-subtitle">สาวการ์ดเกมที่ติดเกมนิดหน่อย • เคลียร์งานนอกสถานที่</div>
+        </div>
+        <div class="header-actions">
+          <button class="btn-icon" onclick="openExportModal()" title="คัดลอกหรือแชร์">
+            📋 แชร์ / MD
+          </button>
+        </div>
+      </div>
+
+      <!-- Overall Progress -->
+      <div class="progress-box">
+        <div class="progress-labels">
+          <span id="progress-summary">ความคืบหน้ารวม</span>
+          <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quick Outdoor Footage Template Banner -->
+    <div class="preset-banner">
+      <div class="preset-text">
+        <strong>📹 ออกไปถ่ายงานข้างนอก?</strong>
+        <div style="font-size: 0.78rem; color: #6D4C41;">กดเพิ่มเช็กลิสต์ช็อต Footage มาตรฐานในคลิกเดียว</div>
+      </div>
+      <button class="btn-preset" onclick="addFootagePreset()">+ โหลดเช็กลิสต์ถ่ายคลิป</button>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="category-scroll" id="cat-tabs">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Task Toolbar -->
+    <div class="list-toolbar">
+      <div class="toolbar-title" id="active-cat-title">
+        📋 งานทั้งหมด
+      </div>
+      <button class="btn-clear-done" onclick="clearCompleted()">
+        🧹 เคลียร์ที่เสร็จแล้ว
+      </button>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list" id="task-list">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- Bottom Floating Add Form -->
+  <div class="bottom-bar">
+    <form class="add-form" onsubmit="handleAddTask(event)">
+      <input 
+        type="text" 
+        id="new-task-input" 
+        class="input-task" 
+        placeholder="พิมพ์งานใหม่... เช่น ถ่าย B-roll ร้านการ์ด" 
+        autocomplete="off"
+        required
+      />
+      <select id="new-task-cat" class="select-category">
+        <option value="footage">📹 Footage</option>
+        <option value="content">🎬 คอนเทนต์</option>
+        <option value="stream">🎙️ สตรีม/OBS</option>
+        <option value="urgent">🎯 งานด่วน</option>
+        <option value="general">📦 ทั่วไป</option>
+      </select>
+      <button type="submit" class="btn-add" title="เพิ่มงาน">+</button>
+    </form>
+  </div>
+
+  <!-- Export / Markdown Modal -->
+  <div class="modal-overlay" id="export-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <div class="modal-title">
+        <span>📋 Markdown & Backup</span>
+        <button class="btn-icon" onclick="closeExportModal()">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        คัดลอกข้อความด้านล่างเพื่อนำไปแปะใน <code>urgent_todo_list.md</code> หรือส่งต่อใน LINE/แชท:
+      </p>
+      <textarea id="export-markdown" class="modal-textarea" readonly></textarea>
+      <div class="modal-btn-row">
+        <button class="btn-icon" onclick="copyMarkdownText()">📋 คัดลอกข้อความ</button>
+        <button class="btn-icon" style="background: #E0E0E0;" onclick="resetToDefault()">🔄 คืนค่าเริ่มต้น</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
+
+  <script>
+    const STORAGE_KEY = 'palamx_tasks_v1';
+
+    // Default Initial Data
+    const DEFAULT_TASKS = [
+      // Tasks from user request & current urgent list
+      {
+        id: 'task-1',
+        title: 'ลดเสียง EasyDonate (Alert Sound)',
+        desc: 'ปรับระดับเสียง Browser Source ใน OBS ให้พอดี ไม่กลบเสียงไมค์หรือเกมระหว่างไลฟ์',
+        cat: 'stream',
+        completed: false
+      },
+      {
+        id: 'task-2',
+        title: 'คลิปเล่าเรื่อง UBL (Pokémon Ultra Ball League)',
+        desc: 'วางสตอรี่บอร์ด/ตัดต่อ เล่าประสบการณ์ โมเมนต์ฮาๆ และผลการแข่งสไตล์เพื่อนเม้าท์มอย',
+        cat: 'content',
+        completed: false
+      },
+      {
+        id: 'task-3',
+        title: 'คลิปเกมส์การ์ดคนไทย (Thai TCG Spotlight)',
+        desc: 'แกะซอง/รีวิว หรือป้ายยาการ์ดเกมสัญชาติไทย ชูภาพลักษณ์สาวการ์ดเกมที่สนับสนุนวงการ TCG ไทย',
+        cat: 'content',
+        completed: false
+      },
+      {
+        id: 'task-4',
+        title: 'ปรับ OBS Overlay (Floating Sticker UI)',
+        desc: 'จอเกมเต็ม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง',
+        cat: 'stream',
+        completed: false
+      },
+      {
+        id: 'task-5',
+        title: 'อุ่นเครื่องลงคลิปสั้น 3–5 คลิป/สัปดาห์',
+        desc: 'รันสูตร 1-to-4 ลง YouTube Shorts, TikTok, Reels, FB Reels',
+        cat: 'urgent',
+        completed: false
+      },
+      // Footage Checklist items for on-location / outdoor shoot
+      {
+        id: 'task-6',
+        title: '📸 ช็อตเปิดคลิป (Hook หน้ากล้อง 3-5 วินาที)',
+        desc: 'ทักทายคนดูแบบตื่นเต้น พูดประเด็นน่าสนใจทันที เช่น "วันนี้เรามาแข่งการ์ดที่..."',
+        cat: 'footage',
+        completed: false
+      },
+      {
+        id: 'task-7',
+        title: '🎴 ช็อตโคลสอัพการ์ด & หน้าซองแบบชัดๆ',
+        desc: 'หมุนกล้องถ่ายดีเทลการ์ดใบเด็ด แสงสวยๆ นิ่งๆ 5 วินาที',
+        cat: 'footage',
+        completed: false
+      },
+      {
+        id: 'task-8',
+        title: '😱 ช็อต Reaction / รีแอ็กชั่นหน้าเหวอ',
+        desc: 'จังหวะลุ้นเปิดซอง หรือจังหวะโดนคอมโบในการแข่ง',
+        cat: 'footage',
+        completed: false
+      },
+      {
+        id: 'task-9',
+        title: '🏟️ ช็อต B-Roll บรรยากาศงานแข่ง & ผู้คนในยิม',
+        desc: 'ถ่ายกวาดบรรยากาศงาน ร้านการ์ด คนกำลังดวลกัน',
+        cat: 'footage',
+        completed: false
+      },
+      {
+        id: 'task-10',
+        title: '🤳 ถ่ายรูปนิ่งแนวตั้งถือเด็ค/การ์ด สำหรับ IG Feed & Story',
+        desc: 'รูปถ่ายไลฟ์สไตล์ตัวเองถือการ์ด แสงดีๆ เอาไว้ลงโปรโมท',
+        cat: 'footage',
+        completed: false
+      }
+    ];
+
+    const CATEGORIES = {
+      all: { label: '🌟 ทั้งหมด', badge: 'ทั้งหมด' },
+      footage: { label: '📹 ถ่ายงาน & Footage', badge: 'Footage', class: 'tag-footage' },
+      content: { label: '🎬 คอนเทนต์', badge: 'คอนเทนต์', class: 'tag-content' },
+      stream: { label: '🎙️ สตรีม/OBS', badge: 'สตรีม', class: 'tag-stream' },
+      urgent: { label: '🎯 งานด่วน P0-P2', badge: 'งานด่วน', class: 'tag-urgent' },
+      general: { label: '📦 ทั่วไป', badge: 'ทั่วไป', class: 'tag-general' }
+    };
+
+    let tasks = [];
+    let currentFilter = 'all';
+
+    // Load from LocalStorage or use default
+    function loadTasks() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          tasks = JSON.parse(stored);
+        } else {
+          tasks = [...DEFAULT_TASKS];
+          saveTasks();
+        }
+      } catch (e) {
+        tasks = [...DEFAULT_TASKS];
+      }
+      render();
+    }
+
+    function saveTasks() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      } catch (e) {
+        console.error('LocalStorage save error', e);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    function toggleTask(id) {
+      const t = tasks.find(item => item.id === id);
+      if (t) {
+        t.completed = !t.completed;
+        saveTasks();
+        // Haptic feedback on mobile if supported
+        if (window.navigator && window.navigator.vibrate) {
+          window.navigator.vibrate(20);
+        }
+        render();
+      }
+    }
+
+    function deleteTask(id, event) {
+      event.stopPropagation();
+      if (confirm('ต้องการลบงานนี้หรือไม่?')) {
+        tasks = tasks.filter(item => item.id !== id);
+        saveTasks();
+        showToast('ลบงานเรียบร้อย');
+        render();
+      }
+    }
+
+    function handleAddTask(e) {
+      e.preventDefault();
+      const input = document.getElementById('new-task-input');
+      const catSelect = document.getElementById('new-task-cat');
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      const newTask = {
+        id: 'task-' + Date.now(),
+        title: text,
+        desc: '',
+        cat: catSelect.value,
+        completed: false
+      };
+
+      tasks.unshift(newTask);
+      saveTasks();
+      input.value = '';
+      showToast('เพิ่มงานใหม่แล้ว! ✨');
+      render();
+    }
+
+    function clearCompleted() {
+      const completedCount = tasks.filter(t => t.completed).length;
+      if (completedCount === 0) {
+        showToast('ยังไม่มีงานที่ติ๊กเสร็จครับ');
+        return;
+      }
+      if (confirm(`ต้องการลบงานที่เสร็จแล้ว (${completedCount} รายการ) ออกจากลิสต์หรือไม่?`)) {
+        tasks = tasks.filter(t => !t.completed);
+        saveTasks();
+        showToast(`เคลียร์งานเสร็จแล้ว ${completedCount} รายการ!`);
+        render();
+      }
+    }
+
+    function addFootagePreset() {
+      const footagePresets = [
+        { title: '🎬 ช็อตเปิดคลิป (Hook หน้ากล้อง)', desc: 'ทักทายคนดูแบบมีพลัง เกริ่นหัวข้อคลิป', cat: 'footage', completed: false },
+        { title: '🎴 ช็อตโคลสอัพการ์ด / รายละเอียดสินค้า', desc: 'ถ่ายระยะประชิด ชัดๆ หมุนการ์ดรับแสง', cat: 'footage', completed: false },
+        { title: '😱 ช็อต Reaction / รีแอ็กชั่นตอนเล่นหรือแกะ', desc: 'หน้าเหวอ ดีใจ หรือตื่นเต้น', cat: 'footage', completed: false },
+        { title: '🏟️ ช็อต B-Roll สถานที่ / บรรยากาศยิม & ร้าน', desc: 'กวาดกล้องดูความคึกคัก', cat: 'footage', completed: false },
+        { title: '🤳 ถ่ายรูปนิ่งคู่การ์ดลง IG Post & Story', desc: 'รูปแนวตั้งสำหรับโปรโมทโซเชียล', cat: 'footage', completed: false }
+      ];
+
+      footagePresets.forEach(item => {
+        tasks.push({
+          id: 'task-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+          ...item
+        });
+      });
+
+      saveTasks();
+      currentFilter = 'footage';
+      showToast('โหลดเช็กลิสต์ถ่ายงาน 5 ช็อตเรียบร้อย! 📹');
+      render();
+    }
+
+    function filterCategory(cat) {
+      currentFilter = cat;
+      render();
+    }
+
+    function render() {
+      // 1. Update Category Tabs
+      const catTabsContainer = document.getElementById('cat-tabs');
+      catTabsContainer.innerHTML = '';
+
+      Object.keys(CATEGORIES).forEach(key => {
+        const catInfo = CATEGORIES[key];
+        const count = key === 'all' 
+          ? tasks.length 
+          : tasks.filter(t => t.cat === key).length;
+
+        const pill = document.createElement('div');
+        pill.className = `cat-pill ${currentFilter === key ? 'active' : ''}`;
+        pill.onclick = () => filterCategory(key);
+        pill.innerHTML = `
+          <span>${catInfo.label}</span>
+          <span class="cat-count">${count}</span>
+        `;
+        catTabsContainer.appendChild(pill);
+      });
+
+      // 2. Filter Tasks
+      const filtered = currentFilter === 'all'
+        ? tasks
+        : tasks.filter(t => t.cat === currentFilter);
+
+      // Sort: incomplete first, then completed
+      const sorted = [...filtered].sort((a, b) => Number(a.completed) - Number(b.completed));
+
+      // 3. Render Task List
+      const listContainer = document.getElementById('task-list');
+      listContainer.innerHTML = '';
+
+      document.getElementById('active-cat-title').textContent = 
+        currentFilter === 'all' ? '📋 งานทั้งหมด' : `${CATEGORIES[currentFilter]?.label || currentFilter}`;
+
+      if (sorted.length === 0) {
+        listContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🎉</div>
+            <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 4px;">ไม่มีงานค้างในหมวดนี้!</div>
+            <div style="font-size: 0.85rem;">กดปุ่มด้านล่างเพื่อเพิ่มงาน หรือเปลี่ยนหมวดหมู่ดูนะ</div>
+          </div>
+        `;
+      } else {
+        sorted.forEach(t => {
+          const catData = CATEGORIES[t.cat] || { badge: t.cat, class: 'tag-general' };
+          const item = document.createElement('div');
+          item.className = `task-item ${t.completed ? 'completed' : ''}`;
+          item.onclick = () => toggleTask(t.id);
+
+          item.innerHTML = `
+            <div class="checkbox-wrap">
+              <div class="custom-check">
+                ${t.completed ? '✓' : ''}
+              </div>
+            </div>
+            <div class="task-content">
+              <div class="task-header-row">
+                <span class="tag-badge ${catData.class}">${catData.badge}</span>
+              </div>
+              <div class="task-title">${escapeHtml(t.title)}</div>
+              ${t.desc ? `<div class="task-desc">${escapeHtml(t.desc)}</div>` : ''}
+            </div>
+            <button class="task-delete" onclick="deleteTask('${t.id}', event)" title="ลบ">🗑️</button>
+          `;
+          listContainer.appendChild(item);
+        });
+      }
+
+      // 4. Update Progress Bar
+      const total = tasks.length;
+      const completed = tasks.filter(t => t.completed).length;
+      const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+      document.getElementById('progress-summary').textContent = `เสร็จแล้ว ${completed} จาก ${total} งาน`;
+      document.getElementById('progress-percent').textContent = `${pct}%`;
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    /* Export & Markdown */
+    function openExportModal() {
+      const modal = document.getElementById('export-modal');
+      const textarea = document.getElementById('export-markdown');
+
+      let md = `# 📝 Palampampamx Checklist (อัปเดต: ${new Date().toLocaleDateString('th-TH')})\n\n`;
+      
+      const cats = ['urgent', 'content', 'footage', 'stream', 'general'];
+      cats.forEach(c => {
+        const catTasks = tasks.filter(t => t.cat === c);
+        if (catTasks.length > 0) {
+          md += `### ${CATEGORIES[c]?.label || c}\n`;
+          catTasks.forEach(t => {
+            md += `- [${t.completed ? 'x' : ' '}] **${t.title}**${t.desc ? ` — ${t.desc}` : ''}\n`;
+          });
+          md += `\n`;
+        }
+      });
+
+      textarea.value = md.trim();
+      modal.classList.add('active');
+    }
+
+    function closeExportModal() {
+      document.getElementById('export-modal').classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'export-modal') {
+        closeExportModal();
+      }
+    }
+
+    function copyMarkdownText() {
+      const textarea = document.getElementById('export-markdown');
+      textarea.select();
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        showToast('คัดลอก Markdown สำเร็จ! 📋');
+        closeExportModal();
+      }).catch(() => {
+        showToast('โปรดคัดลอกข้อความในช่องเอง');
+      });
+    }
+
+    function resetToDefault() {
+      if (confirm('ต้องการรีเซ็ตงานทั้งหมดกลับเป็นค่าเริ่มต้นหรือไม่? (งานที่คุณเพิ่มเองจะหายไป)')) {
+        tasks = [...DEFAULT_TASKS];
+        saveTasks();
+        closeExportModal();
+        showToast('รีเซ็ตเป็นค่าเริ่มต้นแล้ว');
+        render();
+      }
+    }
+
+    // Init
+    loadTasks();
+  </script>
+</body>
+</html>
