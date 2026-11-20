@@ -940,7 +940,7 @@
   <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
 
   <script>
-    const STORAGE_KEY = 'palamx_tasks_v5'; // V4 with Core / Content / Stream / Ideas / Etc
+    const STORAGE_KEY = 'palamx_tasks_v6'; // V6: Split IG Post, Shorts (4 platforms), Long-form YT
 
     // Default 10 Core Tasks for this week + Content pool + Stream + Ideas + Etc
     const DEFAULT_TASKS = [
@@ -950,7 +950,7 @@
     "desc": "ชู Pokémon / MTG เป็นแกนหลัก + เกม Variety เสริมภาพลักษณ์สาวป่วนขี้สงสัย ชวนแชทป้ายยา",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
@@ -960,7 +960,7 @@
     "desc": "แยกเรต Shorts vs Long-form, เงื่อนไข Gen Code 30 วัน, เพิ่มแพ็กเกจ Bundle",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
@@ -970,7 +970,7 @@
     "desc": "เปลี่ยนหน้าแรกให้ตรงแกนสาวการ์ดเกม + อัปเดตยอดผู้ติดตามล่าสุด + คัดตัวอย่างงานเด่น",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
@@ -1061,37 +1061,104 @@
     "desc": "จอเกม 100% ไม่บัง HUD + ฉาก Just Chatting ตารางเหลือง + ทดสอบภาพและระดับเสียง",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
   {
-    "id": "task-ubl",
-    "title": "🏆 คลิปเล่าเรื่อง UBL (งานแข่ง Ultra Ball League)",
-    "desc": "รวมช็อตถ่ายหน้างาน & โมเมนต์การแข่งการ์ดโปเกมอน (ดึงจาก Content Pool เข้ามาโฟกัสสัปดาห์นี้)",
+    "id": "task-ubl-ig",
+    "title": "📸 [IG Post] ภาพนิ่ง & Story งานแข่ง UBL",
+    "desc": "ภาพถ่ายถือเด็ค & บรรยากาศงานแข่ง สร้างพอร์ตสาวการ์ดเกมลง IG Grid (@palampampamx)",
     "cat": "content",
     "isThisWeek": true,
     "completed": false,
     "isOpen": true,
     "subtasks": [
       {
-        "id": "sub-u1",
-        "title": "ฟุตเทจ: คนกำลังเล่น / ดวลการ์ดในงาน",
+        "id": "sub-uig-1",
+        "title": "ถ่ายรูปนิ่งแนวตั้งถือเด็ค & บรรยากาศหน้างาน",
+        "completed": true
+      },
+      {
+        "id": "sub-uig-2",
+        "title": "แต่งรูปคุมโทนเหลืองดื้อ + คัดรูปที่ดีที่สุด 1-3 รูป",
         "completed": false
       },
       {
-        "id": "sub-u2",
-        "title": "ฟุตเทจ: บรรยากาศหน้างาน & ป้ายการแข่งขัน UBL",
+        "id": "sub-uig-3",
+        "title": "เขียนแคปชั่นเล่าฟีลลิ่งงานแข่ง + ป้ายยาเด็คที่ใช้",
         "completed": false
       },
       {
-        "id": "sub-u3",
-        "title": "ฟุตเทจ: Reaction ตัวเองตอนแข่ง / จังหวะลุ้นเด็ค",
+        "id": "sub-uig-4",
+        "title": "โพสต์ลง IG Post (Grid) + แชร์เข้า IG Story & ตอบคอมเมนต์",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "task-ubl-shorts",
+    "title": "⚡ [Shorts] ไฮไลท์ UBL สูตร 1-to-4 (YT/TikTok/Reels/FB)",
+    "desc": "คลิปสั้นแนวตั้ง 9:16 ความยาว 45-60 วิ จังหวะฮา/ลุ้นเด็คสุดมันส์ ปล่อยครบ 4 ช่องทาง",
+    "cat": "content",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      {
+        "id": "sub-ush-1",
+        "title": "คัดฟุตเทจหน้างาน + Reaction ตัวเองตอนแข่ง / จังหวะลุ้นการ์ด",
+        "completed": true
+      },
+      {
+        "id": "sub-ush-2",
+        "title": "วาง Hook 3 วิแรก + ตัดต่อคลิปแนวตั้ง 9:16 (จังหวะกระชับ)",
         "completed": false
       },
       {
-        "id": "sub-u4",
-        "title": "รูปถ่ายนิ่งแนวตั้งถือเด็คลง IG Post & Story",
+        "id": "sub-ush-3",
+        "title": "ใส่ซับไตเติลภาษาไทย + เอฟเฟกต์เสียงสไตล์ป่วน",
+        "completed": false
+      },
+      {
+        "id": "sub-ush-4",
+        "title": "เรนเดอร์ & โพสต์ยิงครบ 4 แพลตฟอร์ม (YT Shorts, TikTok, IG Reels, FB Reels)",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "task-ubl-yt",
+    "title": "🎬 [คลิปยาว YouTube] Vlog พาไปแข่ง UBL & รีวิวเด็ค",
+    "desc": "คอนเทนต์แนวนอน 16:9 บ้านหลัก YouTube พาทัวร์บรรยากาศ เล่าโมเมนต์การแข่ง และสรุปผลงาน",
+    "cat": "content",
+    "isThisWeek": true,
+    "completed": false,
+    "isOpen": true,
+    "subtasks": [
+      {
+        "id": "sub-uyt-1",
+        "title": "รวบรวมฟุตเทจหน้างาน + บรรยากาศคนดวลการ์ด & ป้าย UBL",
+        "completed": true
+      },
+      {
+        "id": "sub-uyt-2",
+        "title": "อัดเสียงเล่าเรื่อง (Voiceover) / ถ่ายคลิปช่วงสรุปความรู้สึกหลังแข่ง",
+        "completed": false
+      },
+      {
+        "id": "sub-uyt-3",
+        "title": "ตัดต่อแนวนอน 16:9 (A-Roll + B-Roll + เพลง BGM สบายๆ)",
+        "completed": false
+      },
+      {
+        "id": "sub-uyt-4",
+        "title": "ทำปกคลิป (Thumbnail) โทนเหลืองดื้อ + คิดชื่อคลิปดึงดูด CTR",
+        "completed": false
+      },
+      {
+        "id": "sub-uyt-5",
+        "title": "เขียน Description, Chapters, Tags และอัปโหลดขึ้น YouTube",
         "completed": false
       }
     ]
@@ -1296,6 +1363,32 @@
     "completed": false,
     "isOpen": false,
     "subtasks": []
+  },
+  {
+    "id": "routine-monthly-followers",
+    "title": "📊 อัปเดตยอดผู้ติดตาม & สถิติรายเดือน (ต้นสัปดาห์แรกของเดือน)",
+    "desc": "บันทึกตัวเลข Followers ล่าสุดทุกแพลตฟอร์ม อัปเดตลง Portfolio (bit.ly/palamx-portfolio) และติดตาม KPI ประจำเดือน",
+    "cat": "etc",
+    "isThisWeek": false,
+    "completed": false,
+    "isOpen": false,
+    "subtasks": [
+      {
+        "id": "sub-mf-1",
+        "title": "เช็กสถิติ YouTube, IG, TikTok, FB, Twitch",
+        "completed": false
+      },
+      {
+        "id": "sub-mf-2",
+        "title": "อัปเดตตัวเลขใน Portfolio (bit.ly/palamx-portfolio) & Rate Card/Media Kit",
+        "completed": false
+      },
+      {
+        "id": "sub-mf-3",
+        "title": "บันทึกและเปรียบเทียบ KPI การเติบโตประจำเดือน",
+        "completed": false
+      }
+    ]
   }
 ];
 
