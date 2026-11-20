@@ -35,38 +35,38 @@
     "desc": "จัดทำภาพปกไฮไลท์ 4 หมวดสไตล์เหลืองดื้อ (Work, TCG & Games, My Life, Live) + ปักหมุด 3 โพสต์แรก",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
-    "isOpen": true,
+    "completed": true,
+    "isOpen": false,
     "subtasks": [
       {
         "id": "sub-ig-1",
         "title": "ออกแบบ / ใส่ภาพปก Highlight Story 4 หมวดโทนเหลืองดื้อ",
-        "completed": false
+        "completed": true
       },
       {
         "id": "sub-ig-2",
         "title": "ไฮไลท์ 1: Work (ผลงานรับงานสปอนเซอร์ / รีวิว)",
-        "completed": false
+        "completed": true
       },
       {
         "id": "sub-ig-3",
         "title": "ไฮไลท์ 2: TCG & Games (งานแข่งการ์ด / แกะซอง / เกม)",
-        "completed": false
+        "completed": true
       },
       {
         "id": "sub-ig-4",
         "title": "ไฮไลท์ 3: My Life (ไลฟ์สไตล์นอกจอ / ความป่วน)",
-        "completed": false
+        "completed": true
       },
       {
         "id": "sub-ig-5",
         "title": "ไฮไลท์ 4: Live & Discord (ตารางสตรีม / คอมมูนิตี้)",
-        "completed": false
+        "completed": true
       },
       {
         "id": "sub-ig-6",
         "title": "ปักหมุด 3 โพสต์แนะนำตัว & รีแบรนด์รับการกลับมา",
-        "completed": false
+        "completed": true
       }
     ]
   },
@@ -76,7 +76,7 @@
     "desc": "โพสต์แจ้งความเคลื่อนไหวกลับมาแอคทีฟ + ปักหมุดพิกัดช่องทางหลัก YouTube",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
@@ -86,7 +86,7 @@
     "desc": "เลือกคลิปยอดวิวสูง / ตรงคาแรกเตอร์สาวการ์ดเกมปักหมุดบนสุด + ตรวจสอบปุ่มเชื่อมโยง IG/YouTube",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
@@ -96,7 +96,7 @@
     "desc": "อัปเดต Channel Description + แบนเนอร์โทนเหลืองดื้อ + จัด Playlist หน้าแรกให้ตรงแกน",
     "cat": "core",
     "isThisWeek": true,
-    "completed": false,
+    "completed": true,
     "isOpen": false,
     "subtasks": []
   },
