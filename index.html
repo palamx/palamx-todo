@@ -940,7 +940,7 @@
   <div class="toast" id="toast">บันทึกเรียบร้อย!</div>
 
   <script>
-    const STORAGE_KEY = 'palamx_tasks_v7'; // V7: 7/12 Core Tasks completed // V6: Split IG Post, Shorts (4 platforms), Long-form YT
+    const STORAGE_KEY = 'palamx_tasks_v8'; // V8: Fix CATEGORIES and render 7/12 Core Tasks // V6: Split IG Post, Shorts (4 platforms), Long-form YT
 
     // Default 10 Core Tasks for this week + Content pool + Stream + Ideas + Etc
     const DEFAULT_TASKS = [
@@ -1391,6 +1391,16 @@
     ]
   }
 ];
+
+    const CATEGORIES = {
+      all: { label: '🌟 ทั้งหมด', badge: 'ทั้งหมด' },
+      core: { label: '🎯 Core Task', badge: 'Core Task', class: 'tag-core' },
+      content: { label: '🎬 คอนเทนต์', badge: 'คอนเทนต์', class: 'tag-content' },
+      stream: { label: '🎙️ สตรีม/OBS', badge: 'สตรีม', class: 'tag-stream' },
+      ideas: { label: '💡 ไอเดีย (รอทำ)', badge: 'ไอเดีย', class: 'tag-ideas' },
+      etc: { label: '📦 อื่นๆ (Etc)', badge: 'ทั่วไป', class: 'tag-etc' },
+      done: { label: '✅ เสร็จแล้ว (Done)', badge: 'เสร็จแล้ว', class: 'tag-done' }
+    };
 
     let tasks = [];
     let currentFilter = 'core'; // Default focus on Core Task!
